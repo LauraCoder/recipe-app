@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: Constants.statusBarHeight,
     paddingHorizontal: 10,
-    backgroundColor: '#cccccc',
+    backgroundColor: '#7FB5D3',
   },
 });
 
 const AppBarTop = () => {
   return (
     <View style={styles.container}>
-      <AppBarTab link='/'>Recipess</AppBarTab>
+      <AppBarTab link='/'>Recipes</AppBarTab>
     </View>
   );
 };
