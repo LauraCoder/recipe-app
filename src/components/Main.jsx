@@ -5,6 +5,7 @@ import theme from '../theme';
 import AppBarTop from './AppBarTop';
 import AppBarBottom from './AppBarBottom';
 import Categories from './Categories';
+import CategoryView from './CategoryView';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,16 +13,22 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     backgroundColor: theme.colors.backgroundPrimary,
   },
+  content: {
+    flex: 1,
+  }
 });
 
 const Main = () => {
   return (
     <View style={styles.container}>
       <AppBarTop />
-      <Routes>
-        <Route path="/" element={<Categories />} exact />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <View style={styles.content} >
+        <Routes>
+          <Route path="/" element={<Categories />} exact />
+          <Route path="/categories/:title" element={<CategoryView />} exact />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </View>
       <AppBarBottom />
     </View>
   );

@@ -1,4 +1,6 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { useNavigate } from 'react-router-native';
+
 import CategoryCard from './CategoryCard';
 
 const categoryList = [
@@ -36,6 +38,9 @@ const styles = StyleSheet.create({
 });
 
 const Categories = () => {
+  let navigate = useNavigate();
+  const numColumns = 2
+
   const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns)
 
@@ -49,15 +54,15 @@ const Categories = () => {
   }
 
   const renderCategoryCard = ({ item }) => (
-    <CategoryCard
-      id={item.id}
-      title={item.title}
-      image={item.image}
-      empty={item.empty}
-    />
+    <Pressable style={{flex: 1}} onPress={() => navigate(`/categories/${item.title}`)}>
+      <CategoryCard
+        id={item.id}
+        title={item.title}
+        image={item.image}
+        empty={item.empty}
+      />
+    </Pressable>
   );
-
-  const numColumns = 2
 
   return (
     <FlatList

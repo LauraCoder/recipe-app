@@ -5,12 +5,14 @@ const theme = {
     textPrimary: '#283035',
     textSecondary: '#C4C4C4',
     primary: '#7FB5D3',
-    secondary: '#FADC00',
+    secondary: '#C4C4C4',
+    tertiary: '#FADC00',
     white: '#ffffff',
   },
   fontSizes: {
     body: 14,
     subheading: 15,
+    heading: 25,
   },
   fonts: {
     main: 'System',

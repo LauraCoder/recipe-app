@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    position: 'relative',
     paddingHorizontal: 10,
     backgroundColor: theme.colors.white,
   },
