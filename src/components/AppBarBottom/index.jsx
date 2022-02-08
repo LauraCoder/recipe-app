@@ -18,11 +18,11 @@ const AppBarBottom = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
-        <AppBarTab link='/'>Snacks & Starters</AppBarTab>
-        <AppBarTab link='/'>Salads</AppBarTab>
-        <AppBarTab link='/'>Main Courses</AppBarTab>
-        <AppBarTab link='/'>Desserts</AppBarTab>
-        <AppBarTab link='/'>Drinks</AppBarTab>
+        <AppBarTab link='/categories/Snacks & Starters'>Snacks & Starters</AppBarTab>
+        <AppBarTab link='/categories/Salads'>Salads</AppBarTab>
+        <AppBarTab link='/categories/Main Courses'>Main Courses</AppBarTab>
+        <AppBarTab link='/categories/Desserts'>Desserts</AppBarTab>
+        <AppBarTab link='/categories/Drinks'>Drinks</AppBarTab>
       </ScrollView>
     </View>
   );

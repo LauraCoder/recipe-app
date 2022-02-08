@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 const AppBarTop = () => {
   return (
     <View style={styles.container}>
-      <AppBarTab link='/'>Recipes</AppBarTab>
+      <AppBarTab link='/'>Categories</AppBarTab>
     </View>
   );
 };

@@ -12,7 +12,7 @@ const recipeList = [
     title: 'Double Chocolate Hot Cocoa',
     servings: 2,
     cookingTime: 10,
-    rating: 4,
+    rating: 4.6,
     image: 'https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2FuZHdpY2h8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60',
   },
   {
@@ -20,7 +20,7 @@ const recipeList = [
     title: 'Grapefruit Sunrise',
     servings: 4,
     cookingTime: 8,
-    rating: 3,
+    rating: 3.4,
     image: 'https://images.unsplash.com/photo-1529059997568-3d847b1154f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHNhbGFkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60',
   },
   {
@@ -28,7 +28,7 @@ const recipeList = [
     title: 'Lemon Soda',
     servings: 2,
     cookingTime: 10,
-    rating: 4,
+    rating: 2.5,
     image: 'https://images.unsplash.com/photo-1588276552401-30058a0fe57b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1123&q=80',
   },
   {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       marginVertical: 30,
-      marginHorizontal: 15,
+      marginHorizontal: 10,
     },
     icons: {
       flex: 2,

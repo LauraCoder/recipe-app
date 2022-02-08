@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image } from 'react-native';
+import { Rating } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import IconSecondary from 'react-native-vector-icons/FontAwesome'
 
 import theme from '../../theme';
 import Text from '../Text';
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   detail: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
+    marginRight: 10,
   },
   footer: {
     flexDirection: 'row',
@@ -60,14 +60,31 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
     fontSize: 13,
   },
-  starIcon: {
+  starIconYellow: {
     marginRight: 2,
     color: theme.colors.tertiary,
+    fontSize: 13,
+  },
+  starIconGray: {
+    marginRight: 2,
+    color: theme.colors.secondary,
     fontSize: 13,
   }
 });
 
-const RecipeCard = ({ title, servings, cookingTime, image, empty }) => {
+
+const StarRating = ({ rating }) => (
+  <Rating
+    type='custom'
+    ratingColor={theme.colors.tertiary}
+    ratingBackgroundColor={theme.colors.secondary}
+    tintColor={theme.colors.white}
+    startingValue={rating}
+    imageSize={16}
+  />
+)
+
+const RecipeCard = ({ title, servings, cookingTime, rating, image, empty }) => {
   if (empty) {
     return <View style={styles.item, styles.itemInvisible} />
   }
@@ -88,16 +105,15 @@ const RecipeCard = ({ title, servings, cookingTime, image, empty }) => {
           </View>
           <View style={styles.detail}>
             <Icon name='clock' style={styles.detailIcon} />
-            <Text details>{cookingTime}</Text>
+            {cookingTime < 15 
+              ? <Text details>max. 15 min</Text>
+              : <Text details>{cookingTime} min</Text>
+            }
           </View>
         </View>
       </View>
       <View style={styles.footer}>
-          <IconSecondary name='star' style={styles.starIcon} />
-          <IconSecondary name='star' style={styles.starIcon} />
-          <IconSecondary name='star' style={styles.starIcon} />
-          <IconSecondary name='star' style={styles.starIcon} />
-          <IconSecondary name='star-o' style={styles.starIcon} />
+        <StarRating rating={rating} />
       </View>
     </View>
   )
