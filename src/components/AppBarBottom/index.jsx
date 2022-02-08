@@ -1,5 +1,6 @@
 import { View, StyleSheet, ScrollView } from 'react-native';
 
+import theme from '../../theme';
 import AppBarTab from './AppBarTab';
 
 const styles = StyleSheet.create({
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     right: 0,
     position: 'relative',
     paddingHorizontal: 10,
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.colors.white,
   },
 });
 

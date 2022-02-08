@@ -1,6 +1,7 @@
 import { View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
+import theme from '../../theme';
 import AppBarTab from './AppBarTab';
 
 const styles = StyleSheet.create({
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: Constants.statusBarHeight,
     paddingHorizontal: 10,
-    backgroundColor: '#7FB5D3',
+    backgroundColor: theme.colors.backgroundSecondary,
   },
 });
 

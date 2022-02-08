@@ -1,10 +1,13 @@
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+
+import theme from '../../theme';
+import Text from '../Text';
 
 const styles = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.colors.white,
     margin: 5,
     height: 200,
     borderRadius: 5,
@@ -49,7 +52,7 @@ const CategoryCard = ({ title, image, empty }) => {
         }}
       />
       <View style={styles.content}>
-        <Text>{title}</Text>
+        <Text subHeading>{title}</Text>
       </View>
     </View>
   )
