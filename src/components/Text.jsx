@@ -31,16 +31,24 @@ const styles = StyleSheet.create({
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
   },
+  recipeSubheading: {
+    fontSize: theme.fontSizes.recipeSubHeading,
+  },
+  recipeBody: {
+    fontSize: theme.fontSizes.recipeBody,
+  },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,
   },
 });
 
-const Text = ({ heading, subHeading, details, color, fontSize, fontWeight, style, ...props }) => {
+const Text = ({ heading, subHeading, recipeBody, recipeSubheading, details, color, fontSize, fontWeight, style, ...props }) => {
   const textStyle = [
     styles.text,
     heading && styles.headingStyle,
     subHeading && styles.subheadingStyle,
+    recipeSubheading && styles.recipeSubheading,
+    recipeBody && styles.recipeBody,
     details && styles.detailsStyle,
     color === 'textSecondary' && styles.colorTextSecondary,
     color === 'primary' && styles.colorPrimary,

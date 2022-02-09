@@ -21,12 +21,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
-  itemInvisible: {
-    flex: 1,
-    margin: 5,
-    height: 200,
-    backgroundColor: 'transparent',
-  },
   cardImage: {
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
@@ -84,10 +78,7 @@ const StarRating = ({ rating }) => (
   />
 )
 
-const RecipeCard = ({ title, servings, cookingTime, rating, image, empty }) => {
-  if (empty) {
-    return <View style={styles.item, styles.itemInvisible} />
-  }
+const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
   return (
     <View style={styles.item}>
       <Image

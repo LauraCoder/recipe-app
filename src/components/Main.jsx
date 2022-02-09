@@ -5,7 +5,8 @@ import theme from '../theme';
 import AppBarTop from './AppBarTop';
 import AppBarBottom from './AppBarBottom';
 import Categories from './Categories';
-import CategoryView from './CategoryView';
+import RecipeList from './RecipeList';
+import SingleRecipe from './SingleRecipe';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +26,8 @@ const Main = () => {
       <View style={styles.content} >
         <Routes>
           <Route path="/" element={<Categories />} exact />
-          <Route path="/categories/:title" element={<CategoryView />} exact />
+          <Route path="/categories/:title" element={<RecipeList />} exact />
+          <Route path="/categories/:category/:id" element={<SingleRecipe />} exact />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </View>

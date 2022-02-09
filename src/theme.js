@@ -8,11 +8,14 @@ const theme = {
     secondary: '#C4C4C4',
     tertiary: '#FADC00',
     white: '#ffffff',
+    transparent: 'transparent'
   },
   fontSizes: {
     body: 14,
     subheading: 15,
     heading: 25,
+    recipeSubHeading: 20,
+    recipeBody: 16,
   },
   fonts: {
     main: 'System',
