@@ -2,8 +2,8 @@ import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View, } from 'react-native';
 import { Rating } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome5'
-
+import FontIcon from 'react-native-vector-icons/FontAwesome5'
+import Icon from 'react-native-vector-icons/AntDesign'
 import theme from '../../theme';
 import Text from '../Text';
 import { recipeList } from '../../../data/recipes';
@@ -26,12 +26,13 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginHorizontal: 10,
     marginVertical: 15,
     top: 0,
   },
   goBackIcon: {
-    fontSize: 20,
+    fontSize: 28,
     color: theme.colors.primary,
   },
   cardImage: {
@@ -82,17 +83,18 @@ const styles = StyleSheet.create({
   },
   instructionsContent: {
     marginTop: 30,
-  }
+  },
 });
 
 const StarRating = ({ rating }) => (
   <Rating
+    readonly
     type='custom'
     ratingColor={theme.colors.tertiary}
     ratingBackgroundColor={theme.colors.secondary}
-    tintColor={theme.colors.backgroundPrimary}
+    tintColor={'#F3F4F8'}
     startingValue={rating}
-    imageSize={20}
+    imageSize={22}
   />
 )
 
@@ -105,7 +107,7 @@ const SingleRecipe = () => {
     <ScrollView>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigate(-1)}>
-          <Icon name='arrow-left' style={styles.goBackIcon} />
+          <Icon name='arrowleft' style={styles.goBackIcon} />
         </TouchableOpacity>
         <StarRating rating={clickedRecipe.rating} />
       </View>
@@ -121,11 +123,11 @@ const SingleRecipe = () => {
           <View style={styles.row}>
             <View style={styles.details}>
               <View style={styles.detail}>
-                <Icon name='user' style={styles.detailIcon} />
+                <FontIcon name='user' style={styles.detailIcon} />
                 <Text details style={{fontSize: theme.fontSizes.recipeBody}}>{clickedRecipe.servings}</Text>
               </View>
               <View style={styles.detail}>
-                <Icon name='clock' style={styles.detailIcon} />
+                <FontIcon name='clock' style={styles.detailIcon} />
                 {clickedRecipe.cookingTime < 15 
                   ? <Text details style={{fontSize: theme.fontSizes.recipeBody}}>max. 15 min</Text>
                   : <Text details style={{fontSize: theme.fontSizes.recipeBody}}>{clickedRecipe.cookingTime} min</Text>
@@ -133,8 +135,8 @@ const SingleRecipe = () => {
               </View>
             </View>
             <View style={styles.rightAlign}>
-              <Icon name='pen' style={styles.editIcon} />
-              <Icon name='trash' style={styles.trashIcon} />
+              <FontIcon name='pen' style={styles.editIcon} />
+              <FontIcon name='trash' style={styles.trashIcon} />
             </View>
           </View>
           <View style={styles.instructionsContent}>

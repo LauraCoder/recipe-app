@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
   cardImage: {
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
-    height: 150,
-    maxHeight: 150,
+    height: 160,
+    maxHeight: 160,
   },
   content: {
+    flex: 1,
     alignItems: 'flex-start',
     paddingHorizontal: 5,
-    flex: 1,
   },
   details: {
     flexDirection: 'row',
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
 
 const StarRating = ({ rating }) => (
   <Rating
+    readonly
     type='custom'
     ratingColor={theme.colors.tertiary}
     ratingBackgroundColor={theme.colors.secondary}

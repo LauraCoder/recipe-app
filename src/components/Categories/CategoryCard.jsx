@@ -20,17 +20,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
-  itemInvisible: {
-    flex: 1,
-    margin: 5,
-    height: 200,
-    backgroundColor: 'transparent',
-  },
   cardImage: {
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
     flex: 1,
-    height: 150,
+    height: 160,
+    maxHeight: 160,
   },
   content: {
     alignItems: 'center',
@@ -39,10 +34,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const CategoryCard = ({ title, image, empty }) => {
-  if (empty) {
-    return <View style={styles.item, styles.itemInvisible} />
-  }
+const CategoryCard = ({ title, image, }) => {
   return (
     <View style={styles.item}>
       <Image
