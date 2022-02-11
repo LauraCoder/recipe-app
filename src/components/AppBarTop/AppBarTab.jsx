@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 });
 
 const AppBarTab = ({ link, children, onPress }) => (
-  <Link to={link} onPress={onPress}>
+  <Link to={link} onPress={onPress} underlayColor='transparent' activeOpacity={.5}>
     <Text style={styles.text}>{children}</Text>
   </Link>
 );

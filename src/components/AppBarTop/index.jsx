@@ -32,7 +32,7 @@ const AppBarTop = () => {
     <View style={styles.container}>
       <AppBarTab link='/'>Categories</AppBarTab>
       <View style={styles.rightCol}>
-        <Icon name='plus' style={styles.navIcons} />
+        <AppBarTab link='/add-new'><Icon name='plus' style={styles.navIcons} /></AppBarTab>
         <Icon name='search1' style={styles.navIcons} />
         <Ionicons name='basket-outline' style={styles.navIcons} />
       </View>
