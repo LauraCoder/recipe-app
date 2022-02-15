@@ -1,9 +1,12 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, } from 'react-native';
 import theme from '../../theme';
 import FormikTextInput from '../FormikTextInput';
 import Text from '../Text';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import FeatherIcon from 'react-native-vector-icons/Feather'
 import { Rating } from 'react-native-elements';
+import Button from '../Button';
+import { FieldArray } from 'formik';
 
 const styles = StyleSheet.create({
     component: {
@@ -23,6 +26,19 @@ const styles = StyleSheet.create({
       shadowRadius: 2.62,
       elevation: 4,
     },
+    arrayInput: {
+      flexDirection: 'row', 
+      alignItems: 'center', 
+      justifyContent: 'space-between'
+    },
+    deleteIcon: {
+      fontSize: 30,
+      color: theme.colors.secondary,
+      backgroundColor: theme.colors.white,
+      borderRadius: 100,
+      padding: 5,
+      marginTop: 10,
+    }
 });
 
 const StarRating = () => (
@@ -36,7 +52,7 @@ const StarRating = () => (
   />
 )
 
-const AddNewRecipeForm = () => {
+const AddNewRecipeForm = ({ values }) => {
   return (
     <View style={styles.component}>
       <View style={styles.item}>
@@ -54,7 +70,20 @@ const AddNewRecipeForm = () => {
         <FormikTextInput style={{flex: 0.5}} name='cookingTime' placeholder='Cooking Time' />
       </View>
       <Text heading style={{marginTop: 20}}>Ingredients</Text>
-      <FormikTextInput name='ingredient' placeholder='Ingredient' />
+      <FieldArray name='ingredients'>
+            {({ push }) => (
+              <>
+              {values.ingredients.length > 0 &&
+                  values.ingredients.map((ingredient, index) => (
+      <View style={styles.arrayInput} key={index}>
+        <FormikTextInput name={`ingredients.${index}.ingredient`} placeholder='Ingredient' style={{flex: 0.95}} />
+        <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
+      </View>
+                  ))}
+      <Button onPress={() => push({ ingredient: ''})}>Add an ingredient</Button>
+      </>
+      )}
+      </FieldArray>
       <Text heading style={{marginTop: 20}}>Directions</Text>
       <FormikTextInput name='step' placeholder='Step' />
     </View>

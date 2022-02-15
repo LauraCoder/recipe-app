@@ -1,4 +1,4 @@
-import { StyleSheet, View, ImageBackground, ScrollView } from 'react-native'
+import { StyleSheet, View, ImageBackground, } from 'react-native'
 import { Route, Routes, Navigate } from 'react-router-native'
 
 import theme from '../theme'
@@ -31,7 +31,6 @@ const Main = () => {
     <View style={styles.container}>
       <ImageBackground source={images.appBackground} imageStyle={{opacity: .8}} style={styles.image}>
         <AppBarTop />
-        <ScrollView>
         <View style={styles.content} >
           <Routes>
             <Route path="/" element={<Categories />} exact />
@@ -41,7 +40,6 @@ const Main = () => {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </View>
-        </ScrollView>
         <AppBarBottom />
       </ImageBackground>
     </View>
