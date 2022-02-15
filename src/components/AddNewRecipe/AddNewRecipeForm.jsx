@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
       alignItems: 'center', 
       justifyContent: 'space-between',
       marginTop: 10,
+      paddingLeft: 10,
       backgroundColor: theme.colors.white,
       borderRadius: 5,
       shadowColor: "#000",
@@ -93,12 +94,28 @@ const AddNewRecipeForm = ({ values }) => {
                 </TouchableOpacity>
               </View>
             ))}
-            <Button onPress={() => push({ingredient: ''})}>Add an ingredient</Button>
+            <Button onPress={() => push({ingredient: ''})}>Add more ingredients</Button>
           </>
         )}
       </FieldArray>
       <Text heading style={{marginTop: 20}}>Directions</Text>
-      <FormikTextInput name='step' placeholder='Step' />
+      <FieldArray name='instructions'>
+        {({ remove, push }) => (
+          <>
+            {values.instructions.length > 0 &&
+                values.instructions.map((step, index) => (
+              <View style={styles.arrayInput} key={index}>
+                <Text color='primary' fontSize='subheading' fontWeight='bold'>{index + 1}</Text>
+                <FormikTextArrayInput name={`instructions.${index}.step`} placeholder='Step' style={{flex: 0.95,}} />
+                <TouchableOpacity onPress={() => remove(index)}>
+                  <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
+                </TouchableOpacity>
+              </View>
+            ))}
+            <Button onPress={() => push({ingredient: ''})}>Add more steps</Button>
+          </>
+        )} 
+      </FieldArray>
     </View>
   );
 };
