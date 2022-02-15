@@ -31,7 +31,7 @@ const Main = () => {
     <View style={styles.container}>
       <ImageBackground source={images.appBackground} imageStyle={{opacity: .8}} style={styles.image}>
         <AppBarTop />
-        <View style={styles.content} >
+        <View style={styles.content}>
           <Routes>
             <Route path="/" element={<Categories />} exact />
             <Route path="/add-new" element={<AddNewRecipe />} exact />

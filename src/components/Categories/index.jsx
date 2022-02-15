@@ -31,7 +31,6 @@ const Categories = () => {
       renderItem={renderCategoryCard}
       keyExtractor={item => item.id}
       numColumns={2}
-      scrollEnabled={false}
     />
   )
 }

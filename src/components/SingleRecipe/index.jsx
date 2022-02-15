@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native';
-import { Image, StyleSheet, TouchableOpacity, View, } from 'react-native';
+import { Image, ScrollView, StyleSheet, TouchableOpacity, View, } from 'react-native';
 import { Rating } from 'react-native-elements';
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import Icon from 'react-native-vector-icons/AntDesign'
@@ -104,7 +104,7 @@ const SingleRecipe = () => {
   const clickedRecipe = recipeList.find(item => item.id === id)
 
   return (
-    <>
+    <ScrollView>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigate(-1)}>
           <Icon name='arrowleft' style={styles.goBackIcon} />
@@ -152,7 +152,7 @@ const SingleRecipe = () => {
           </View>
         </View>
       </View>
-    </>
+    </ScrollView>
   )
 }
 

@@ -31,13 +31,13 @@ const AddNewRecipe = () => {
 
   return (
     <ScrollView>
-    <Formik 
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-    >
-      {({ handleSubmit, values }) => <AddNewRecipeForm onSubmit={handleSubmit} values={values} />}
-    </Formik>
+      <Formik 
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ handleSubmit, values }) => <AddNewRecipeForm onSubmit={handleSubmit} values={values} />}
+      </Formik>
     </ScrollView>
   )
 }

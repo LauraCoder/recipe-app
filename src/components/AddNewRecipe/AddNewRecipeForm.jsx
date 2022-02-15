@@ -1,4 +1,4 @@
-import { View, StyleSheet, } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, } from 'react-native';
 import theme from '../../theme';
 import FormikTextInput from '../FormikTextInput';
 import Text from '../Text';
@@ -7,6 +7,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather'
 import { Rating } from 'react-native-elements';
 import Button from '../Button';
 import { FieldArray } from 'formik';
+import FormikTextArrayInput from '../FormikTextArrayInput';
 
 const styles = StyleSheet.create({
     component: {
@@ -29,15 +30,25 @@ const styles = StyleSheet.create({
     arrayInput: {
       flexDirection: 'row', 
       alignItems: 'center', 
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      marginTop: 10,
+      backgroundColor: theme.colors.white,
+      borderRadius: 5,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.23,
+      shadowRadius: 2.62,
+      elevation: 4,
     },
     deleteIcon: {
       fontSize: 30,
       color: theme.colors.secondary,
       backgroundColor: theme.colors.white,
-      borderRadius: 100,
+      borderRadius: 50,
       padding: 5,
-      marginTop: 10,
     }
 });
 
@@ -71,18 +82,20 @@ const AddNewRecipeForm = ({ values }) => {
       </View>
       <Text heading style={{marginTop: 20}}>Ingredients</Text>
       <FieldArray name='ingredients'>
-            {({ push }) => (
-              <>
-              {values.ingredients.length > 0 &&
-                  values.ingredients.map((ingredient, index) => (
-      <View style={styles.arrayInput} key={index}>
-        <FormikTextInput name={`ingredients.${index}.ingredient`} placeholder='Ingredient' style={{flex: 0.95}} />
-        <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
-      </View>
-                  ))}
-      <Button onPress={() => push({ ingredient: ''})}>Add an ingredient</Button>
-      </>
-      )}
+        {({ remove, push }) => (
+          <>
+            {values.ingredients.length > 0 &&
+                values.ingredients.map((ingredient, index) => (
+              <View style={styles.arrayInput} key={index}>
+                <FormikTextArrayInput name={`ingredients.${index}.ingredient`} placeholder='Ingredient' style={{flex: 0.95,}} />
+                <TouchableOpacity onPress={() => remove(index)}>
+                  <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
+                </TouchableOpacity>
+              </View>
+            ))}
+            <Button onPress={() => push({ingredient: ''})}>Add an ingredient</Button>
+          </>
+        )}
       </FieldArray>
       <Text heading style={{marginTop: 20}}>Directions</Text>
       <FormikTextInput name='step' placeholder='Step' />

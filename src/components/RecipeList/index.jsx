@@ -92,7 +92,7 @@ const RecipeList = () => {
       />
     </Pressable>
   );
-  //  renderItem={renderRecipeCard}
+  
   return (
     <FlatList
       style={styles.container}
@@ -105,7 +105,6 @@ const RecipeList = () => {
       keyExtractor={item => item.id}
       numColumns={2}
       ListHeaderComponent={() => <HeaderComponent title={title} />}
-      scrollEnabled={false}
     />
   )
 }

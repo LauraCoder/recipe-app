@@ -17,14 +17,21 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
+  arrayInput: {
+    backgroundColor: theme.colors.white,
+    borderRadius: 5,
+    padding: 10,
+    color: theme.colors.textPrimary,
+  },
   warning: {
     borderColor: theme.colors.warning,
   },
 });  
 
-const TextInput = ({ whiteInput, style, error, ...props }) => {
+const TextInput = ({ whiteInput, arrayInput, style, error, ...props }) => {
   const textInputStyle = [
     whiteInput && styles.inputField,
+    arrayInput && styles.arrayInput,
     error && styles.warning,
     style,
   ];
