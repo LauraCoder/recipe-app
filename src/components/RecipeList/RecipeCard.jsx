@@ -1,9 +1,9 @@
-import { StyleSheet, View, Image } from 'react-native';
-import { Rating } from 'react-native-elements';
+import { StyleSheet, View, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-import theme from '../../theme';
-import Text from '../Text';
+import theme from '../../theme'
+import StarRating from '../StarRating'
+import Text from '../Text'
 
 const styles = StyleSheet.create({
   item: {
@@ -12,10 +12,10 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     margin: 5,
     borderRadius: 5,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-        width: 0,
-        height: 1,
+      width: 0,
+      height: 1,
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
@@ -64,20 +64,7 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
     fontSize: 13,
   }
-});
-
-
-const StarRating = ({ rating }) => (
-  <Rating
-    readonly
-    type='custom'
-    ratingColor={theme.colors.tertiary}
-    ratingBackgroundColor={theme.colors.secondary}
-    tintColor={theme.colors.white}
-    startingValue={rating}
-    imageSize={16}
-  />
-)
+})
 
 const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
   return (
@@ -97,7 +84,7 @@ const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
           </View>
           <View style={styles.detail}>
             <Icon name='clock' style={styles.detailIcon} />
-            {cookingTime < 15 
+            {cookingTime < 15
               ? <Text details>max. 15 min</Text>
               : <Text details>{cookingTime} min</Text>
             }
@@ -105,7 +92,7 @@ const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
         </View>
       </View>
       <View style={styles.footer}>
-        <StarRating rating={rating} />
+        <StarRating readOnly startingValue={rating} imageSize={16} />
       </View>
     </View>
   )

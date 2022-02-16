@@ -1,7 +1,7 @@
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native'
 
-import theme from '../../theme';
-import Text from '../Text';
+import theme from '../../theme'
+import Text from '../Text'
 
 const styles = StyleSheet.create({
   item: {
@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
     margin: 5,
     height: 200,
     borderRadius: 5,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-        width: 0,
-        height: 1,
+      width: 0,
+      height: 1,
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 10,
   }
-});
+})
 
 const CategoryCard = ({ title, image, }) => {
   return (

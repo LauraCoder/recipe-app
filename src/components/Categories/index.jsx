@@ -1,20 +1,20 @@
-import { FlatList, Pressable, StyleSheet } from 'react-native';
-import { useNavigate } from 'react-router-native';
+import { FlatList, Pressable, StyleSheet } from 'react-native'
+import { useNavigate } from 'react-router-native'
 
-import CategoryCard from './CategoryCard';
-import { categoryList } from '../../../data/categories';
+import CategoryCard from './CategoryCard'
+import { categoryList } from '../../../data/categories'
 
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 5,
   },
-});
+})
 
 const Categories = () => {
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   const renderCategoryCard = ({ item }) => (
-    <Pressable style={{flex: 0.5}} onPress={() => navigate(`/categories/${item.title}`)}>
+    <Pressable style={{ flex: 0.5 }} onPress={() => navigate(`/categories/${item.title}`)}>
       <CategoryCard
         id={item.id}
         title={item.title}
@@ -22,7 +22,7 @@ const Categories = () => {
         empty={item.empty}
       />
     </Pressable>
-  );
+  )
 
   return (
     <FlatList

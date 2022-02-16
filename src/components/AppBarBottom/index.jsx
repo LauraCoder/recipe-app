@@ -1,8 +1,8 @@
 import { View, StyleSheet, } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import theme from '../../theme';
-import AppBarTab from './AppBarTab';
+import theme from '../../theme'
+import AppBarTab from './AppBarTab'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: theme.colors.primary,
   }
-});
+})
 
 const AppBarBottom = () => {
   return (
@@ -32,4 +32,4 @@ const AppBarBottom = () => {
   )
 }
 
-export default AppBarBottom;
+export default AppBarBottom

@@ -1,5 +1,5 @@
-import { TextInput as NativeTextInput, StyleSheet } from 'react-native';
-import theme from '../theme';
+import { TextInput as NativeTextInput, StyleSheet } from 'react-native'
+import theme from '../theme'
 
 const styles = StyleSheet.create({
   inputField: {
@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     color: theme.colors.textPrimary,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-        width: 0,
-        height: 1,
+      width: 0,
+      height: 1,
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   warning: {
     borderColor: theme.colors.warning,
   },
-});  
+})
 
 const TextInput = ({ whiteInput, arrayInput, style, error, ...props }) => {
   const textInputStyle = [
@@ -34,13 +34,13 @@ const TextInput = ({ whiteInput, arrayInput, style, error, ...props }) => {
     arrayInput && styles.arrayInput,
     error && styles.warning,
     style,
-  ];
+  ]
 
-  return <NativeTextInput 
+  return <NativeTextInput
     style={textInputStyle}
     error={error}
-    {...props} 
-  />;
-};
+    {...props}
+  />
+}
 
-export default TextInput;
+export default TextInput

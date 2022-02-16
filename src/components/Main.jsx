@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     resizeMode: 'cover'
   },
-});
+})
 
 const Main = () => {
   return (
     <View style={styles.container}>
-      <ImageBackground source={images.appBackground} imageStyle={{opacity: .8}} style={styles.image}>
+      <ImageBackground source={images.appBackground} imageStyle={{ opacity: .8 }} style={styles.image}>
         <AppBarTop />
         <View style={styles.content}>
           <Routes>
