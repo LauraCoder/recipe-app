@@ -1,48 +1,15 @@
-import { FlatList, Pressable, StyleSheet, View, } from 'react-native'
+import { FlatList, Pressable, StyleSheet, } from 'react-native'
 import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import { recipeList } from '../../../data/recipes'
-import Text from '../Text'
 import RecipeCard from './RecipeCard'
 import theme from '../../theme'
+import HeaderComponent from './HeaderComponent'
 
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 5,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 30,
-    marginHorizontal: 10,
-  },
-  icons: {
-    flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  sortIcon: {
-    marginRight: 30,
-    color: theme.colors.primary,
-    fontSize: 20,
-  },
-  filterIcon: {
-    backgroundColor: theme.colors.white,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-    borderRadius: 100,
-    padding: 8,
-    color: theme.colors.primary,
-    fontSize: 15,
   },
   addNewCard: {
     flex: 1,
@@ -60,18 +27,6 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 })
-
-const HeaderComponent = ({ title }) => {
-  return (
-    <View style={styles.header}>
-      <Text heading>{title}</Text>
-      <View style={styles.icons}>
-        <Icon name='sort' style={styles.sortIcon} />
-        <Icon name='filter' style={styles.filterIcon} />
-      </View>
-    </View>
-  )
-}
 
 const RecipeList = () => {
   const { title } = useParams()

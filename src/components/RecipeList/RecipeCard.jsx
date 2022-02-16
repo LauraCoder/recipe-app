@@ -1,32 +1,13 @@
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import theme from '../../theme'
+import Image from '../Image'
+import ItemView from '../ItemView'
 import StarRating from '../StarRating'
 import Text from '../Text'
 
 const styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: theme.colors.white,
-    margin: 5,
-    borderRadius: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  cardImage: {
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
-    height: 160,
-    maxHeight: 160,
-  },
   content: {
     flex: 1,
     alignItems: 'flex-start',
@@ -54,27 +35,12 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
     fontSize: 13,
   },
-  starIconYellow: {
-    marginRight: 2,
-    color: theme.colors.tertiary,
-    fontSize: 13,
-  },
-  starIconGray: {
-    marginRight: 2,
-    color: theme.colors.secondary,
-    fontSize: 13,
-  }
 })
 
 const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
   return (
-    <View style={styles.item}>
-      <Image
-        style={styles.cardImage}
-        source={{
-          uri: `${image}`,
-        }}
-      />
+    <ItemView>
+      <Image image={image} />
       <View style={styles.content}>
         <Text subHeading>{title}</Text>
         <View style={styles.details}>
@@ -94,7 +60,7 @@ const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
       <View style={styles.footer}>
         <StarRating readOnly startingValue={rating} imageSize={16} />
       </View>
-    </View>
+    </ItemView>
   )
 }
 

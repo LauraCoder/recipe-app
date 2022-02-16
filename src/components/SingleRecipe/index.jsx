@@ -11,7 +11,7 @@ const SingleRecipe = () => {
   const clickedRecipe = recipeList.find(item => item.id === id)
 
   return (
-    <ScrollView>
+    <ScrollView style={{ paddingHorizontal: 4 }}>
       <SingleRecipeHeader navigate={navigate} rating={clickedRecipe.rating} />
       <SingleRecipeItem recipe={clickedRecipe} />
     </ScrollView>

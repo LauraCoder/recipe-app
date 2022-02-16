@@ -8,7 +8,8 @@ const theme = {
     secondary: '#C4C4C4',
     tertiary: '#FADC00',
     white: '#ffffff',
-    transparent: 'transparent'
+    transparent: 'transparent',
+    warning: 'red'
   },
   fontSizes: {
     body: 14,

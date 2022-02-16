@@ -1,29 +1,12 @@
-import { Image, StyleSheet, View, } from 'react-native'
+import { StyleSheet, View, } from 'react-native'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
+
 import theme from '../../theme'
+import Image from '../Image'
+import ItemView from '../ItemView'
 import Text from '../Text'
 
 const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'column',
-    backgroundColor: theme.colors.white,
-    margin: 10,
-    borderRadius: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  cardImage: {
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
-    height: 250,
-    maxHeight: 250,
-  },
   content: {
     alignItems: 'flex-start',
     padding: 10,
@@ -70,13 +53,8 @@ const styles = StyleSheet.create({
 })
 
 const SingleRecipeItem = ({ recipe }) => (
-  <View style={styles.item}>
-    <Image
-      style={styles.cardImage}
-      source={{
-        uri: `${recipe.image}`,
-      }}
-    />
+  <ItemView>
+    <Image singleRecipe image={recipe.image} />
     <View style={styles.content}>
       <Text recipeSubheading>{recipe.title}</Text>
       <View style={styles.row}>
@@ -88,8 +66,12 @@ const SingleRecipeItem = ({ recipe }) => (
           <View style={styles.detail}>
             <FontIcon name='clock' style={styles.detailIcon} />
             {recipe.cookingTime < 15
-              ? <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>max. 15 min</Text>
-              : <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>{recipe.cookingTime} min</Text>
+              ? <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>
+                  max. 15 min
+              </Text>
+              : <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>
+                {recipe.cookingTime} min
+              </Text>
             }
           </View>
         </View>
@@ -113,7 +95,7 @@ const SingleRecipeItem = ({ recipe }) => (
         )}
       </View>
     </View>
-  </View>
+  </ItemView>
 )
 
 export default SingleRecipeItem

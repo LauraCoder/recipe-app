@@ -16,6 +16,8 @@ const FormikTextInput = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name)
   const showError = meta.touched && meta.error
 
+  //{showError && <Text style={styles.errorText}>{meta.error}</Text>}
+
   return (
     <>
       <TextInput whiteInput
@@ -25,7 +27,6 @@ const FormikTextInput = ({ name, ...props }) => {
         error={showError}
         {...props}
       />
-      {showError && <Text style={styles.errorText}>{meta.error}</Text>}
     </>
   )
 }

@@ -1,13 +1,18 @@
+import React, { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity, } from 'react-native'
+import { Picker } from '@react-native-picker/picker'
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import FeatherIcon from 'react-native-vector-icons/Feather'
+
+import { categoryList } from '../../../data/categories'
 import theme from '../../theme'
 import FormikTextInput from '../FormikTextInput'
 import Text from '../Text'
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import FeatherIcon from 'react-native-vector-icons/Feather'
 import Button from '../Button'
 import { FieldArray } from 'formik'
 import FormikTextArrayInput from '../FormikTextArrayInput'
 import StarRating from '../StarRating'
+import FontIcon from 'react-native-vector-icons/FontAwesome5'
 
 const styles = StyleSheet.create({
   component: {
@@ -28,6 +33,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   arrayInput: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -44,6 +50,14 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
+  picker: {
+    flex: 1,
+    color: theme.colors.textPrimary,
+  },
+  pickerLabel: {
+    flex: 1,
+    color: '#a1a1a1',
+  },
   deleteIcon: {
     fontSize: 30,
     color: theme.colors.secondary,
@@ -51,9 +65,18 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 5,
   },
+  detailIcon: {
+    fontSize: 20,
+    color: theme.colors.secondary,
+    backgroundColor: theme.colors.white,
+    borderRadius: 50,
+    marginRight: 10,
+  }
 })
 
-const AddNewRecipeForm = ({ values }) => {
+const AddNewRecipeForm = ({ onSubmit, values, }) => {
+  const [selectedValue, setSelectedValue] = useState()
+
   return (
     <View style={styles.component}>
       <View style={styles.item}>
@@ -62,13 +85,31 @@ const AddNewRecipeForm = ({ values }) => {
         </View>
       </View>
       <FormikTextInput name='title' placeholder='Title' />
-      <FormikTextInput name='category' placeholder='Category' />
+      <View style={styles.item}>
+        <Picker
+          selectedValue={selectedValue}
+          useNativeAndroidPickerStyle={false}
+          style={selectedValue ? styles.picker : styles.pickerLabel}
+          onValueChange={(itemValue) => setSelectedValue(itemValue)}
+        >
+          <Picker.Item enabled={false} style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }} label='Category' value={null} />
+          {categoryList.map(category =>
+            <Picker.Item style={{ fontSize: theme.fontSizes.body, color: theme.colors.textPrimary }} label={category.title} value={category.title} key={category.id} />
+          )}
+        </Picker>
+      </View>
       <View style={styles.item}>
         <StarRating imageSize={36} />
       </View>
-      <View style={{ flexDirection: 'row' }}>
-        <FormikTextInput style={{ flex: 0.5, marginRight: 10 }} name='servings' placeholder='Servings' />
-        <FormikTextInput style={{ flex: 0.5 }} name='cookingTime' placeholder='Cooking Time' />
+      <View style={{ flexDirection: 'row', }}>
+        <View style={styles.arrayInput} marginRight={10}>
+          <FormikTextArrayInput name='servings' placeholder='Servings' style={{ flex: 0.95 }} />
+          <FontIcon name='user' style={styles.detailIcon} />
+        </View>
+        <View style={styles.arrayInput}>
+          <FormikTextArrayInput name='cookingTime' placeholder='Cooking Time' style={{ flex: 0.95 }} />
+          <FontIcon name='clock' style={styles.detailIcon} />
+        </View>
       </View>
       <Text heading style={{ marginTop: 35 }}>Ingredients</Text>
       <FieldArray name='ingredients'>
@@ -105,7 +146,7 @@ const AddNewRecipeForm = ({ values }) => {
           </>
         )}
       </FieldArray>
-      <Button style={{ marginTop: 45 }}>Save recipe</Button>
+      <Button onPress={onSubmit} style={{ marginTop: 45 }}>Save recipe</Button>
     </View>
   )
 }

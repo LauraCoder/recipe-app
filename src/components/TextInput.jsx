@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
   },
   warning: {
-    borderColor: theme.colors.warning,
+    color: theme.colors.warning,
   },
 })
 
