@@ -59,7 +59,7 @@ const RecipeList = () => {
       }}
       keyExtractor={item => item.id}
       numColumns={2}
-      ListHeaderComponent={() => <HeaderComponent title={title} />}
+      ListHeaderComponent={() => <HeaderComponent title={title} navigate={navigate} />}
     />
   )
 }

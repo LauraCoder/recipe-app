@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   text: {
     marginHorizontal: 15,
     marginTop: 15,
-    paddingBottom: 20,
+    paddingBottom: 15,
   },
 })
 

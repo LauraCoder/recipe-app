@@ -1,4 +1,4 @@
-import { StyleSheet, View, } from 'react-native'
+import { StyleSheet, TouchableOpacity, View, } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import Text from '../Text'
@@ -39,9 +39,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const HeaderComponent = ({ title }) => (
+const HeaderComponent = ({ title, navigate }) => (
   <View style={styles.header}>
-    <Text heading>{title}</Text>
+    <TouchableOpacity onPress={() => navigate('/')}>
+      <Text heading>{title}</Text>
+    </TouchableOpacity>
     <View style={styles.icons}>
       <Icon name='sort' style={styles.sortIcon} />
       <Icon name='filter' style={styles.filterIcon} />
