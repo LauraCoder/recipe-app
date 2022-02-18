@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
 const AppBarBottom = () => {
   let location = useLocation()
   const [currentLocation, setCurrentLocation] = useState()
+  const [visible, setVisible] = useState(false)
   const activeColor = theme.colors.primary
   const inactiveColor = theme.colors.secondary
 
   useEffect(() => {
     setCurrentLocation(location.pathname)
+    setVisible(true)
     return currentLocation
   }, [location])
 
@@ -42,11 +44,21 @@ const AppBarBottom = () => {
 
   return (
     <View style={styles.container}>
-      <AppBarTab link='/categories/Snacks & Starters'><MaterialIcon name='food-croissant' color={changeIconColor(isSnacksStarters)} size={32} /></AppBarTab>
-      <AppBarTab link='/categories/Salads'><MaterialIcon name='leaf' color={changeIconColor(isSalads)} style={styles.navIcon} size={32} /></AppBarTab>
-      <AppBarTab link='/categories/Main Courses'><MaterialIcon name='food' color={changeIconColor(isMainCourses)} style={styles.navIcon} size={32} /></AppBarTab>
-      <AppBarTab link='/categories/Desserts'><MaterialIcon name='muffin' color={changeIconColor(isDesserts)} style={styles.navIcon} size={32} /></AppBarTab>
-      <AppBarTab link='/categories/Drinks'><MaterialIcon name='glass-cocktail' color={changeIconColor(isDrinks)} style={styles.navIcon} size={32} /></AppBarTab>
+      <AppBarTab link={visible && !isSnacksStarters ? '/categories/Snacks & Starters' : '/'}>
+        <MaterialIcon name='food-croissant' color={changeIconColor(isSnacksStarters)} size={32} />
+      </AppBarTab>
+      <AppBarTab link={visible && !isSalads ? '/categories/Salads' : '/'}>
+        <MaterialIcon name='leaf' color={changeIconColor(isSalads)} style={styles.navIcon} size={32} />
+      </AppBarTab>
+      <AppBarTab  link={visible && !isMainCourses ? '/categories/Main Courses' : '/'}>
+        <MaterialIcon name='food' color={changeIconColor(isMainCourses)} style={styles.navIcon} size={32} />
+      </AppBarTab>
+      <AppBarTab  link={visible && !isDesserts ? '/categories/Desserts' : '/'}>
+        <MaterialIcon name='muffin' color={changeIconColor(isDesserts)} style={styles.navIcon} size={32} />
+      </AppBarTab>
+      <AppBarTab link={visible && !isDrinks ? '/categories/Drinks' : '/'}>
+        <MaterialIcon name='glass-cocktail' color={changeIconColor(isDrinks)} style={styles.navIcon} size={32} />
+      </AppBarTab>
     </View>
   )
 }

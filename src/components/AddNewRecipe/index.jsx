@@ -48,7 +48,7 @@ const AddNewRecipe = () => {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit, values }) => <AddNewRecipeForm onSubmit={handleSubmit} values={values} />}
+        {({ handleSubmit, values, }) => <AddNewRecipeForm onSubmit={handleSubmit} values={values} />}
       </Formik>
     </ScrollView>
   )

@@ -3,13 +3,13 @@ import { View, StyleSheet, TouchableOpacity, } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather'
+import { FieldArray, } from 'formik'
 
 import { categoryList } from '../../../data/categories'
 import theme from '../../theme'
 import FormikTextInput from '../FormikTextInput'
 import Text from '../Text'
 import Button from '../Button'
-import { FieldArray } from 'formik'
 import FormikTextArrayInput from '../FormikTextArrayInput'
 import StarRating from '../StarRating'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
@@ -92,7 +92,7 @@ const AddNewRecipeForm = ({ onSubmit, values, }) => {
           style={selectedValue ? styles.picker : styles.pickerLabel}
           onValueChange={(itemValue) => setSelectedValue(itemValue)}
         >
-          <Picker.Item enabled={false} style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }} label='Category' value={null} />
+          <Picker.Item style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }} label='Category' value={null} />
           {categoryList.map(category =>
             <Picker.Item style={{ fontSize: theme.fontSizes.body, color: theme.colors.textPrimary }} label={category.title} value={category.title} key={category.id} />
           )}

@@ -5,7 +5,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import theme from '../../theme'
 import AppBarTab from './AppBarTab'
-import Text from '../Text'
 
 const styles = StyleSheet.create({
   container: {
