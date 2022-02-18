@@ -11,10 +11,24 @@ const styles = StyleSheet.create({
 const StarRating  = ({ warning, readOnly, style, ...props }) => {
   const ratingStyle = [
     styles.rating,
-    readOnly && styles.secondary,
     warning && styles.warning,
     style,
   ]
+
+  if (readOnly) {
+    return (
+      <Rating
+        readonly
+        type='custom'
+        ratingColor={theme.colors.tertiary}
+        ratingBackgroundColor={theme.colors.secondary}
+        tintColor={theme.colors.white}
+        startingValue={0}
+        style={ratingStyle}
+        {...props}
+      />
+    )
+  }
 
   return (
     <Rating

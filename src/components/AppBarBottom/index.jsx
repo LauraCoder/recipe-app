@@ -20,19 +20,20 @@ const styles = StyleSheet.create({
 
 const AppBarBottom = () => {
   let location = useLocation()
-  const [newLocation, setNewLocation] = useState()
+  const [currentLocation, setCurrentLocation] = useState()
   const activeColor = theme.colors.primary
   const inactiveColor = theme.colors.secondary
 
   useEffect(() => {
-    setNewLocation(location.pathname)
+    setCurrentLocation(location.pathname)
+    return currentLocation
   }, [location])
 
-  const isSnacksStarters = newLocation === '/categories/Snacks & Starters'
-  const isSalads = newLocation === '/categories/Salads'
-  const isMainCourses = newLocation === '/categories/Main Courses'
-  const isDesserts = newLocation === '/categories/Desserts'
-  const isDrinks = newLocation === '/categories/Drinks'
+  const isSnacksStarters = currentLocation === '/categories/Snacks & Starters'
+  const isSalads = currentLocation === '/categories/Salads'
+  const isMainCourses = currentLocation === '/categories/Main Courses'
+  const isDesserts = currentLocation === '/categories/Desserts'
+  const isDrinks = currentLocation === '/categories/Drinks'
 
   const changeIconColor = (value) => {
     if (value) return activeColor
