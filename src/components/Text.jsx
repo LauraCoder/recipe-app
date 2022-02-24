@@ -31,8 +31,11 @@ const styles = StyleSheet.create({
   colorWhite: {
     color: theme.colors.white,
   },
+  fontSizeSecondaryHeading: {
+    fontSize: theme.fontSizes.recipeSubHeading,
+  },
   fontSizeSubheading: {
-    fontSize: theme.fontSizes.subheading,
+    fontSize: theme.fontSizes.heading,
   },
   recipeSubheading: {
     fontSize: theme.fontSizes.recipeSubHeading,
@@ -57,6 +60,7 @@ const Text = ({ heading, subHeading, recipeBody, recipeSubheading, details, colo
     color === 'primary' && styles.colorPrimary,
     color === 'white' && styles.colorWhite,
     fontSize === 'subheading' && styles.fontSizeSubheading,
+    fontSize === 'secondaryHeading' && styles.fontSizeSecondaryHeading,
     fontWeight === 'bold' && styles.fontWeightBold,
     style,
   ]
