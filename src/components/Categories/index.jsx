@@ -1,14 +1,8 @@
-import { FlatList, Pressable, StyleSheet } from 'react-native'
+import { FlatList, Pressable, } from 'react-native'
 import { useNavigate } from 'react-router-native'
 
 import CategoryCard from './CategoryCard'
 import { categoryList } from '../../../data/categories'
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 5,
-  },
-})
 
 const Categories = () => {
   let navigate = useNavigate()
@@ -26,11 +20,11 @@ const Categories = () => {
 
   return (
     <FlatList
-      style={styles.container}
       data={categoryList}
       renderItem={renderCategoryCard}
       keyExtractor={item => item.id}
       numColumns={2}
+      contentContainerStyle={{ paddingVertical: 15, paddingHorizontal: 5 }}
     />
   )
 }
