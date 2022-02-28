@@ -14,12 +14,13 @@ const theme = {
   fontSizes: {
     body: 14,
     subheading: 15,
-    heading: 25,
+    heading: 33,
     recipeSubHeading: 20,
     recipeBody: 16,
   },
   fonts: {
     main: 'System',
+    heading: 'Caveat_500Medium',
   },
   fontWeights: {
     normal: '400',

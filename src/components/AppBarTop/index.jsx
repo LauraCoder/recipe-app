@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Constants from 'expo-constants'
+import { SearchBar, Overlay } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -28,7 +30,30 @@ const styles = StyleSheet.create({
   },
 })
 
+const SearchOverlay = ({ toggleOverlay, visible, search, updateSearch }) => (
+  <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: 300, padding: 5 }}>
+    <SearchBar
+      placeholder='Type here...'
+      onChangeText={updateSearch}
+      value={search}
+      containerStyle={{ backgroundColor: '#fff', borderBottomColor: 'transparent', borderTopColor: 'transparent' }}
+      inputContainerStyle={{ backgroundColor: '#fff' }}
+      searchIcon={{ size: 20 }}
+      showLoading
+      showCancel
+      lightTheme
+    />
+  </Overlay>
+)
+
 const AppBarTop = ({ drawer }) => {
+  const [visible, setVisible] = useState(false)
+  const [search, setSearch] = useState('')
+
+  const toggleOverlay = () => setVisible(!visible)
+  const updateSearch = (search) => {
+    setSearch(search)
+  }
 
   return (
     <View style={styles.container}>
@@ -37,9 +62,18 @@ const AppBarTop = ({ drawer }) => {
       </TouchableOpacity>
       <View style={styles.rightCol}>
         <AppBarTab link='/add-new'><Icon name='plus' style={styles.navIcons} /></AppBarTab>
-        <Icon name='search1' style={styles.navIcons} />
+        <TouchableOpacity onPress={toggleOverlay}>
+          <Icon name='search1' style={styles.navIcons} />
+        </TouchableOpacity>
         <Ionicons name='basket-outline' style={styles.navIcons} />
       </View>
+      <SearchOverlay
+        toggleOverlay={toggleOverlay}
+        visible={visible}
+        setVisible={setVisible}
+        search={search}
+        updateSearch={updateSearch}
+      />
     </View>
   )
 }
