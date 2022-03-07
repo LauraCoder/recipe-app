@@ -2,9 +2,11 @@ import { FlatList, Pressable, } from 'react-native'
 import { useNavigate } from 'react-router-native'
 
 import CategoryCard from './CategoryCard'
-import { categoryList } from '../../../data/categories'
+import useCategories from '../../hooks/useCategories'
+//import { categoryList } from '../../../data/categories'
 
 const Categories = () => {
+  const { categories } = useCategories()
   let navigate = useNavigate()
 
   const renderCategoryCard = ({ item }) => (
@@ -20,7 +22,7 @@ const Categories = () => {
 
   return (
     <FlatList
-      data={categoryList}
+      data={categories}
       renderItem={renderCategoryCard}
       keyExtractor={item => item.id}
       numColumns={2}

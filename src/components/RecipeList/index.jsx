@@ -2,13 +2,15 @@ import { FlatList, Pressable, } from 'react-native'
 import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native'
 
-import { recipeList } from '../../../data/recipes'
+import useRecipes from '../../hooks/useRecipes'
+//import { recipeList } from '../../../data/recipes'
 import RecipeCard from './RecipeCard'
 import HeaderComponent from './HeaderComponent'
 
 const RecipeList = () => {
   const { title } = useParams()
   let navigate = useNavigate()
+  const { recipes } = useRecipes()
 
   const renderRecipeCard = ({ item }) => (
     <Pressable style={{ flex: 0.5 }} onPress={() => navigate(`/categories/${item.category}/${item.id}`)}>
@@ -28,7 +30,7 @@ const RecipeList = () => {
 
   return (
     <FlatList
-      data={recipeList}
+      data={recipes}
       renderItem={({ item }) => {
         if (item.category === title) {
           return renderRecipeCard({ item })
