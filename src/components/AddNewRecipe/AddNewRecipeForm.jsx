@@ -5,7 +5,8 @@ import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import { FieldArray, } from 'formik'
 
-import { categoryList } from '../../../data/categories'
+//import { categoryList } from '../../../data/categories'
+import useCategories from '../../hooks/useCategories'
 import theme from '../../theme'
 import FormikTextInput from '../FormikTextInput'
 import Text from '../Text'
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
 })
 
 const AddNewRecipeForm = ({ onSubmit, values, }) => {
+  const { categories } = useCategories()
   const [selectedValue, setSelectedValue] = useState()
 
   return (
@@ -87,16 +89,22 @@ const AddNewRecipeForm = ({ onSubmit, values, }) => {
       <FormikTextInput name='title' placeholder='Title' />
       <View style={styles.item}>
         <Picker
-          selectedValue={selectedValue}
           useNativeAndroidPickerStyle={false}
           style={selectedValue ? styles.picker : styles.pickerLabel}
           onValueChange={(itemValue) => setSelectedValue(itemValue)}
+          selectedValue={selectedValue}
         >
           <Picker.Item style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }} label='Category' value={null} />
-          {categoryList.map(category =>
-            <Picker.Item style={{ fontSize: theme.fontSizes.body, color: theme.colors.textPrimary }} label={category.title} value={category.title} key={category.id} />
+          {categories.map(category =>
+            <Picker.Item
+              style={{ fontSize: theme.fontSizes.body, color: theme.colors.textPrimary }}
+              label={category.title}
+              value={category.title}
+              key={category.id}
+            />
           )}
         </Picker>
+        {console.log('value', selectedValue)}
       </View>
       <View style={styles.item}>
         <StarRating imageSize={36} />

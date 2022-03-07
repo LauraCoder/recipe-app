@@ -1,5 +1,8 @@
+import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-native'
 import * as yup from 'yup'
 import { Formik } from 'formik'
+import { ADD_RECIPE } from '../../graphql/mutations'
 import AddNewRecipeForm from './AddNewRecipeForm'
 import { ScrollView } from 'react-native'
 
@@ -37,8 +40,31 @@ const initialValues = {
 }
 
 const AddNewRecipe = () => {
-  const onSubmit = (values) => {
-    console.log('submit', values)
+  const [addRecipe, { error }] = useMutation(ADD_RECIPE)
+  let navigate = useNavigate()
+
+  const onSubmit = async (values) => {
+    const { title, category, servings, cookingTime, } = values
+    console.log('cat', category)
+
+    console.log('values', values)
+
+    try {
+      const { data } = await addRecipe({
+        variables: {
+          recipe: {
+            title,
+            category,
+            servings,
+            cookingTime,
+          }
+        }
+      })
+      console.log(data)
+      navigate('/categories')
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
@@ -48,7 +74,8 @@ const AddNewRecipe = () => {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit, values, }) => <AddNewRecipeForm onSubmit={handleSubmit} values={values} />}
+        {({ handleSubmit, values, }) =>
+          <AddNewRecipeForm onSubmit={handleSubmit} values={values} error={error} />}
       </Formik>
     </ScrollView>
   )
