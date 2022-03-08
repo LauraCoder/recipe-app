@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity, } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FeatherIcon from 'react-native-vector-icons/Feather'
-import { FieldArray, } from 'formik'
+import { Field, FieldArray, } from 'formik'
 
-//import { categoryList } from '../../../data/categories'
 import useCategories from '../../hooks/useCategories'
 import theme from '../../theme'
 import FormikTextInput from '../FormikTextInput'
@@ -14,6 +13,7 @@ import Button from '../Button'
 import FormikTextArrayInput from '../FormikTextArrayInput'
 import StarRating from '../StarRating'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
+
 
 const styles = StyleSheet.create({
   component: {
@@ -75,9 +75,20 @@ const styles = StyleSheet.create({
   }
 })
 
-const AddNewRecipeForm = ({ onSubmit, values, }) => {
+const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, setFieldValue }) => {
   const { categories } = useCategories()
-  const [selectedValue, setSelectedValue] = useState()
+  const [val, setValue] = useState()
+
+  /*
+  <StarRating
+          imageSize={36}
+          name='rating'
+          onValueChange={handleChange('rating', val)}
+          //onFinishRating={values.rating}
+          onFinishRating={val => setFieldValue(val)}
+          onBlur={handleBlur('rating')}
+        />
+        */
 
   return (
     <View style={styles.component}>
@@ -90,9 +101,10 @@ const AddNewRecipeForm = ({ onSubmit, values, }) => {
       <View style={styles.item}>
         <Picker
           useNativeAndroidPickerStyle={false}
-          style={selectedValue ? styles.picker : styles.pickerLabel}
-          onValueChange={(itemValue) => setSelectedValue(itemValue)}
-          selectedValue={selectedValue}
+          style={styles.picker}
+          onValueChange={handleChange('category')}
+          onBlur={handleBlur('category')}
+          selectedValue={values.category}
         >
           <Picker.Item style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }} label='Category' value={null} />
           {categories.map(category =>
@@ -104,10 +116,9 @@ const AddNewRecipeForm = ({ onSubmit, values, }) => {
             />
           )}
         </Picker>
-        {console.log('value', selectedValue)}
       </View>
       <View style={styles.item}>
-        <StarRating imageSize={36} />
+        <Field name='rating' as={StarRating} imageSize={36} />
       </View>
       <View style={{ flexDirection: 'row', }}>
         <View style={styles.arrayInput} marginRight={10}>
@@ -126,13 +137,13 @@ const AddNewRecipeForm = ({ onSubmit, values, }) => {
             {values.ingredients.length > 0 &&
                 values.ingredients.map((ingredient, index) => (
                   <View style={styles.arrayInput} key={index}>
-                    <FormikTextArrayInput name={`ingredients.${index}.ingredient`} placeholder='Ingredient' style={{ flex: 0.95, }} />
+                    <FormikTextArrayInput name={`ingredients.${index}`} placeholder='Ingredient' style={{ flex: 0.95, }} />
                     <TouchableOpacity onPress={() => remove(index)}>
                       <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
                     </TouchableOpacity>
                   </View>
                 ))}
-            <Button secondary onPress={() => push({ ingredient: '' })}>Add more ingredients</Button>
+            <Button secondary onPress={() => push({ ingredients: '' })}>Add more ingredients</Button>
           </>
         )}
       </FieldArray>
@@ -144,13 +155,13 @@ const AddNewRecipeForm = ({ onSubmit, values, }) => {
                 values.instructions.map((step, index) => (
                   <View style={styles.arrayInput} key={index}>
                     <Text color='primary' fontSize='subheading' fontWeight='bold'>{index + 1}</Text>
-                    <FormikTextArrayInput name={`instructions.${index}.step`} placeholder='Step' style={{ flex: 0.95, }} />
+                    <FormikTextArrayInput name={`instructions.${index}`} placeholder='Step' style={{ flex: 0.95, }} />
                     <TouchableOpacity onPress={() => remove(index)}>
                       <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
                     </TouchableOpacity>
                   </View>
                 ))}
-            <Button secondary onPress={() => push({ ingredient: '' })}>Add more steps</Button>
+            <Button secondary onPress={() => push({ instructions: '' })}>Add more steps</Button>
           </>
         )}
       </FieldArray>

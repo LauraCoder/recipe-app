@@ -11,32 +11,24 @@ const validationSchema = yup.object().shape({
     .string()
     .min(2, 'Title must be longer')
     .required('Title is required'),
-  servings: yup
+  /*servings: yup
     .number()
     .min(1, 'Number of servings must be greater or equal to 1')
     .required('Number of servings is required'),
   cookingTime: yup
     .number()
     .min(1, 'Cooking time must be greater or equal to 1')
-    .required('Cooking time is required'),
+    .required('Cooking time is required'),*/
 })
 
 const initialValues = {
   title: '',
   category: '',
-  rating: '',
+  rating: 0,
   servings: '',
   cookingTime: '',
-  ingredients: [
-    {
-      ingredient: '',
-    }
-  ],
-  instructions:  [
-    {
-      step: '',
-    }
-  ],
+  ingredients: [''],
+  instructions:  [''],
 }
 
 const AddNewRecipe = () => {
@@ -44,9 +36,7 @@ const AddNewRecipe = () => {
   let navigate = useNavigate()
 
   const onSubmit = async (values) => {
-    const { title, category, servings, cookingTime, } = values
-    console.log('cat', category)
-
+    const { title, category, rating, servings, cookingTime, ingredients, instructions  } = values
     console.log('values', values)
 
     try {
@@ -55,8 +45,11 @@ const AddNewRecipe = () => {
           recipe: {
             title,
             category,
+            rating,
             servings,
             cookingTime,
+            ingredients,
+            instructions
           }
         }
       })
@@ -74,8 +67,16 @@ const AddNewRecipe = () => {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit, values, }) =>
-          <AddNewRecipeForm onSubmit={handleSubmit} values={values} error={error} />}
+        {({ handleSubmit, values, handleChange, handleBlur, setFieldValue }) =>
+          <AddNewRecipeForm
+            onSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            setFieldValue={setFieldValue}
+            values={values}
+            error={error}
+          />
+        }
       </Formik>
     </ScrollView>
   )

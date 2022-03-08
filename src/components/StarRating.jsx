@@ -1,4 +1,5 @@
 import { StyleSheet, } from 'react-native'
+import { useField } from 'formik'
 import theme from '../theme'
 import { Rating } from 'react-native-elements'
 
@@ -8,12 +9,14 @@ const styles = StyleSheet.create({
   }
 })
 
-const StarRating  = ({ warning, readOnly, style, ...props }) => {
+const StarRating  = ({ warning, readOnly, style, name, ...props }) => {
   const ratingStyle = [
     styles.rating,
     warning && styles.warning,
     style,
   ]
+
+  const [field, meta, helpers] = useField(name)
 
   if (readOnly) {
     return (
@@ -38,6 +41,7 @@ const StarRating  = ({ warning, readOnly, style, ...props }) => {
       tintColor={theme.colors.white}
       startingValue={0}
       style={ratingStyle}
+      onFinishRating={value => helpers.setValue(value)}
       {...props}
     />
   )
