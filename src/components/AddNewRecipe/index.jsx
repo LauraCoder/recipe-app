@@ -24,7 +24,7 @@ const validationSchema = yup.object().shape({
 const initialValues = {
   title: '',
   category: '',
-  rating: 0,
+  rating: null,
   servings: '',
   cookingTime: '',
   ingredients: [''],
@@ -42,19 +42,19 @@ const AddNewRecipe = () => {
     try {
       const { data } = await addRecipe({
         variables: {
-          recipe: {
-            title,
-            category,
-            rating,
-            servings,
-            cookingTime,
-            ingredients,
-            instructions
-          }
+          title,
+          category,
+          servings,
+          cookingTime,
+          rating,
+          ingredients,
+          instructions
         }
       })
+      console.log('nav', `/categories/${data?.addRecipe?.category}/${data?.addRecipe?.id}`)
       console.log(data)
-      navigate('/categories')
+      navigate(`/categories/${category}`)
+      //navigate(`/categories/${data?.addRecipe?.category}/${data?.addRecipe?.id}`)
     } catch (e) {
       console.log(e)
     }
@@ -67,12 +67,11 @@ const AddNewRecipe = () => {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit, values, handleChange, handleBlur, setFieldValue }) =>
+        {({ handleSubmit, values, handleChange, handleBlur, }) =>
           <AddNewRecipeForm
             onSubmit={handleSubmit}
             handleChange={handleChange}
             handleBlur={handleBlur}
-            setFieldValue={setFieldValue}
             values={values}
             error={error}
           />

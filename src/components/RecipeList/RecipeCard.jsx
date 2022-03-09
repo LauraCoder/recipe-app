@@ -58,7 +58,7 @@ const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
         </View>
       </View>
       <View style={styles.footer}>
-        <StarRating readOnly startingValue={rating} imageSize={16} />
+        <StarRating startingValue={rating} imageSize={22} />
       </View>
     </ItemView>
   )

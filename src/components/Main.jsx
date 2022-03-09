@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: theme.colors.backgroundPrimary,
+    backgroundColor: theme.colors.white,
   },
   content: {
     flex: 1,
@@ -38,7 +38,7 @@ const Main = () => {
       drawerPosition='left'
       renderNavigationView={() => <DrawerNavigationView drawer={drawer} />}>
       <View style={styles.container}>
-        <ImageBackground source={images.appBackground} imageStyle={{ opacity: .8 }} style={styles.image}>
+        <ImageBackground source={images.appBackground} imageStyle={{ opacity: .5 }} style={styles.image}>
           <AppBarTop drawer={drawer} />
           <View style={styles.content}>
             <Routes>

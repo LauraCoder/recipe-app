@@ -82,12 +82,12 @@ const SingleRecipeItem = ({ recipe }) => (
       </View>
       <View style={styles.instructionsContent}>
         <Text recipeBody style={{ marginBottom: 10 }}>INGREDIENTS</Text>
-        {recipe.ingredients.map((ingredient, i) =>
+        {recipe.ingredients?.map((ingredient, i) =>
           <Text recipeBody key={i}>{ingredient}</Text>
         )}
       </View>
       <View style={styles.instructionsContent}>
-        {recipe.instructions.map((step, i) =>
+        {recipe.instructions?.map((step, i) =>
           <Text recipeBody key={i} style={{ marginBottom: 10 }}>
             <Text color='textSecondary' fontSize='subheading' fontWeight='bold'>{i + 1}: </Text>
             {step}

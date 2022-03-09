@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity, } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -11,8 +10,8 @@ import FormikTextInput from '../FormikTextInput'
 import Text from '../Text'
 import Button from '../Button'
 import FormikTextArrayInput from '../FormikTextArrayInput'
-import StarRating from '../StarRating'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
+import StarRatingInput from '../StarRatingInput'
 
 
 const styles = StyleSheet.create({
@@ -75,9 +74,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, setFieldValue }) => {
+const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => {
   const { categories } = useCategories()
-  const [val, setValue] = useState()
 
   /*
   <StarRating
@@ -118,7 +116,7 @@ const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, setField
         </Picker>
       </View>
       <View style={styles.item}>
-        <Field name='rating' as={StarRating} imageSize={36} />
+        <Field name='rating' as={StarRatingInput} imageSize={36} />
       </View>
       <View style={{ flexDirection: 'row', }}>
         <View style={styles.arrayInput} marginRight={10}>

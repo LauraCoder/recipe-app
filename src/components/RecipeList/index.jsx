@@ -12,6 +12,10 @@ const RecipeList = () => {
   let navigate = useNavigate()
   const { recipes } = useRecipes()
 
+  const filteredRecipeList = recipes
+    ? recipes.filter(recipe => recipe.category === title)
+    : []
+
   const renderRecipeCard = ({ item }) => (
     <Pressable style={{ flex: 0.5 }} onPress={() => navigate(`/categories/${item.category}/${item.id}`)}>
       <RecipeCard
@@ -30,16 +34,14 @@ const RecipeList = () => {
 
   return (
     <FlatList
-      data={recipes}
-      renderItem={({ item }) => {
-        if (item.category === title) {
-          return renderRecipeCard({ item })
-        }
-      }}
+      data={filteredRecipeList}
+      renderItem={({ item }) =>
+        renderRecipeCard({ item })
+      }
       keyExtractor={item => item.id}
       numColumns={2}
       ListHeaderComponent={() => <HeaderComponent title={title} navigate={navigate} />}
-      contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 5 }}
+      contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 5, }}
     />
   )
 }

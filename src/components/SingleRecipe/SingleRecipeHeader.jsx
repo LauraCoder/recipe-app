@@ -24,7 +24,7 @@ const SingleRecipeHeader = ({ navigate, rating }) => {
       <TouchableOpacity onPress={() => navigate(-1)}>
         <Icon name='arrowleft' style={styles.goBackIcon} />
       </TouchableOpacity>
-      <StarRating readOnly startingValue={rating} imageSize={22} tintColor={'#F3F4F8'} />
+      <StarRating startingValue={rating} imageSize={22} tintColor={'#F9F8FB'} />
     </View>
   )
 }
