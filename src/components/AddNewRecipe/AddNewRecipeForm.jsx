@@ -12,6 +12,8 @@ import Button from '../Button'
 import FormikTextArrayInput from '../FormikTextArrayInput'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import StarRatingInput from '../StarRatingInput'
+import FormikNumberInput from '../FormikNumberInput'
+import AddImage from './AddImage'
 
 
 const styles = StyleSheet.create({
@@ -77,23 +79,10 @@ const styles = StyleSheet.create({
 const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => {
   const { categories } = useCategories()
 
-  /*
-  <StarRating
-          imageSize={36}
-          name='rating'
-          onValueChange={handleChange('rating', val)}
-          //onFinishRating={values.rating}
-          onFinishRating={val => setFieldValue(val)}
-          onBlur={handleBlur('rating')}
-        />
-        */
-
   return (
     <View style={styles.component}>
       <View style={styles.item}>
-        <View style={{ backgroundColor: '#ccc', height: 200, justifyContent: 'center', alignItems: 'center' }}>
-          <MaterialIcon name='camera-plus' color='#fff' size={35} />
-        </View>
+        <AddImage />
       </View>
       <FormikTextInput name='title' placeholder='Title' />
       <View style={styles.item}>
@@ -120,11 +109,11 @@ const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => {
       </View>
       <View style={{ flexDirection: 'row', }}>
         <View style={styles.arrayInput} marginRight={10}>
-          <FormikTextArrayInput name='servings' placeholder='Servings' style={{ flex: 0.95 }} />
+          <FormikNumberInput name='servings' placeholder='Servings' style={{ flex: 0.95 }} />
           <FontIcon name='user' style={styles.detailIcon} />
         </View>
         <View style={styles.arrayInput}>
-          <FormikTextArrayInput name='cookingTime' placeholder='Cooking Time' style={{ flex: 0.95 }} />
+          <FormikNumberInput name='cookingTime' placeholder='Cooking Time' style={{ flex: 0.95 }} />
           <FontIcon name='clock' style={styles.detailIcon} />
         </View>
       </View>
@@ -152,7 +141,7 @@ const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => {
             {values.instructions.length > 0 &&
                 values.instructions.map((step, index) => (
                   <View style={styles.arrayInput} key={index}>
-                    <Text color='primary' fontSize='subheading' fontWeight='bold'>{index + 1}</Text>
+                    <Text color='primary' fontSize='secondaryHeading' fontWeight='bold'>{index + 1}</Text>
                     <FormikTextArrayInput name={`instructions.${index}`} placeholder='Step' style={{ flex: 0.95, }} />
                     <TouchableOpacity onPress={() => remove(index)}>
                       <FeatherIcon name='x-circle' style={styles.deleteIcon}/>

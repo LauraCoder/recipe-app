@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.recipeSubHeading,
   },
   fontSizeSubheading: {
-    fontSize: theme.fontSizes.heading,
+    fontSize: theme.fontSizes.subheading,
   },
   recipeSubheading: {
     fontSize: theme.fontSizes.recipeSubHeading,
