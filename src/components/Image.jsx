@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
   cardImage: {
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
-    height: 160,
-    maxHeight: 160,
+    height: 180,
+    maxHeight: 180,
   },
   noImage: {
     borderTopRightRadius: 5,

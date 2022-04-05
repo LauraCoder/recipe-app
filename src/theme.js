@@ -9,7 +9,8 @@ const theme = {
     tertiary: '#FADC00',
     white: '#ffffff',
     transparent: 'transparent',
-    warning: 'red'
+    warning: 'red',
+    border: '#e8e8e8'
   },
   fontSizes: {
     body: 14,
