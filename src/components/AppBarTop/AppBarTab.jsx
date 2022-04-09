@@ -6,8 +6,8 @@ import Text from '../Text'
 const styles = StyleSheet.create({
   text: {
     marginHorizontal: 10,
-    marginTop: 14,
-    paddingBottom: 14,
+    marginTop: 11,
+    paddingBottom: 11,
   },
 })
 

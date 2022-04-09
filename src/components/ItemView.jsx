@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     margin: 5,
     borderRadius: 5,
-    shadowColor: '#000',
+    shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: {
       width: 0,
       height: 1,

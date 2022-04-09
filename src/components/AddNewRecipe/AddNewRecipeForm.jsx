@@ -82,7 +82,7 @@ const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => {
   return (
     <View style={styles.component}>
       <View style={styles.item}>
-        <AddImage />
+        <AddImage values={values} />
       </View>
       <FormikTextInput name='title' placeholder='Title' />
       <View style={styles.item}>

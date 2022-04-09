@@ -15,6 +15,14 @@ const styles = StyleSheet.create({
     right: 0,
     paddingHorizontal: 10,
     backgroundColor: theme.colors.white,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+    elevation: 10,
   },
 })
 
@@ -45,19 +53,19 @@ const AppBarBottom = () => {
   return (
     <View style={styles.container}>
       <AppBarTab link={visible && !isSnacksStarters ? '/categories/Snacks & Starters' : '/'}>
-        <MaterialIcon name='food-croissant' color={changeIconColor(isSnacksStarters)} size={32} />
+        <MaterialIcon name='food-croissant' color={changeIconColor(isSnacksStarters)} size={31} />
       </AppBarTab>
       <AppBarTab link={visible && !isSalads ? '/categories/Salads' : '/'}>
-        <MaterialIcon name='leaf' color={changeIconColor(isSalads)} style={styles.navIcon} size={32} />
+        <MaterialIcon name='leaf' color={changeIconColor(isSalads)} style={styles.navIcon} size={31} />
       </AppBarTab>
       <AppBarTab  link={visible && !isMainCourses ? '/categories/Main Courses' : '/'}>
-        <MaterialIcon name='food' color={changeIconColor(isMainCourses)} style={styles.navIcon} size={32} />
+        <MaterialIcon name='food' color={changeIconColor(isMainCourses)} style={styles.navIcon} size={31} />
       </AppBarTab>
       <AppBarTab  link={visible && !isDesserts ? '/categories/Desserts' : '/'}>
-        <MaterialIcon name='muffin' color={changeIconColor(isDesserts)} style={styles.navIcon} size={32} />
+        <MaterialIcon name='muffin' color={changeIconColor(isDesserts)} style={styles.navIcon} size={31} />
       </AppBarTab>
       <AppBarTab link={visible && !isDrinks ? '/categories/Drinks' : '/'}>
-        <MaterialIcon name='glass-cocktail' color={changeIconColor(isDrinks)} style={styles.navIcon} size={32} />
+        <MaterialIcon name='glass-cocktail' color={changeIconColor(isDrinks)} style={styles.navIcon} size={31} />
       </AppBarTab>
     </View>
   )

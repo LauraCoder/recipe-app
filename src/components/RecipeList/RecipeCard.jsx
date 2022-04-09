@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: 'flex-start',
-    paddingHorizontal: 5,
+    paddingHorizontal: 8,
   },
   details: {
     flexDirection: 'row',
@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginHorizontal: 5,
+    marginHorizontal: 8,
     marginBottom: 5,
-    marginTop: 10,
+    marginTop: 5,
     bottom: 0,
   },
   detailIcon: {
@@ -58,7 +58,7 @@ const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
         </View>
       </View>
       <View style={styles.footer}>
-        <StarRating startingValue={rating} imageSize={22} />
+        <StarRating startingValue={rating} imageSize={20} />
       </View>
     </ItemView>
   )

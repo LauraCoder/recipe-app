@@ -36,12 +36,13 @@ const AddNewRecipe = () => {
   let navigate = useNavigate()
 
   const onSubmit = async (values) => {
-    const { title, category, rating, servings, cookingTime, ingredients, instructions  } = values
+    const { image, title, category, rating, servings, cookingTime, ingredients, instructions  } = values
     console.log('values', values)
 
     try {
       const { data } = await addRecipe({
         variables: {
+          image,
           title,
           category,
           servings,
