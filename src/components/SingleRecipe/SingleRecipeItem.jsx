@@ -1,5 +1,9 @@
-import { StyleSheet, View, } from 'react-native'
+import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-native'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
+import { DELETE_RECIPE } from '../../graphql/mutations'
+//import deleteRecipe from '../../hooks/deleteRecipe'
 
 import theme from '../../theme'
 import Image from '../Image'
@@ -52,7 +56,23 @@ const styles = StyleSheet.create({
   },
 })
 
-const SingleRecipeItem = ({ recipe }) => (
+const SingleRecipeItem = ({ recipe }) => {
+  const [deleteRecipe] = useMutation(DELETE_RECIPE)
+  let navigate = useNavigate()
+
+  const deleteSingleRecipe = async () => {
+  //let navigate = useNavigate()
+    try {
+      console.log('id', recipe.id)
+      const { data } = await deleteRecipe(recipe.id)
+      navigate(`/categories/${recipe.category}`)
+      console.log(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  return (
   <ItemView>
     <Image singleRecipe image={recipe.image} />
     <View style={styles.content}>
@@ -77,7 +97,9 @@ const SingleRecipeItem = ({ recipe }) => (
         </View>
         <View style={styles.rightAlign}>
           <FontIcon name='pen' style={styles.editIcon} />
-          <FontIcon name='trash' style={styles.trashIcon} />
+          <TouchableOpacity onPress={() => deleteSingleRecipe()}>
+            <FontIcon name='trash' style={styles.trashIcon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.instructionsContent}>
@@ -95,7 +117,7 @@ const SingleRecipeItem = ({ recipe }) => (
         )}
       </View>
     </View>
-  </ItemView>
-)
+  </ItemView>)
+}
 
 export default SingleRecipeItem

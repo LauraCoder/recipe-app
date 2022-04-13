@@ -16,3 +16,20 @@ export const ADD_RECIPE = gql`
     }
   }
 `
+
+export const DELETE_RECIPE = gql`
+  mutation DeleteRecipe($deleteRecipeId: ID) {
+    deleteRecipe(id: $deleteRecipeId) {
+      id
+      title
+      category
+      servings
+      cookingTime
+      rating
+      ingredients
+      instructions
+      dateAdded
+      image
+    }
+  }
+`
