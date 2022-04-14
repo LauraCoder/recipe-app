@@ -1,7 +1,9 @@
 import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-native'
+import { useState } from 'react'
 import { StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
+import AntIcon from 'react-native-vector-icons/AntDesign'
 import { DELETE_RECIPE } from '../../graphql/mutations'
 
 import theme from '../../theme'
@@ -39,6 +41,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginHorizontal: 30,
   },
+  ingredientIcon: {
+    fontSize: 22,
+    marginRight: 10,
+  },
   trashIcon: {
     color: theme.colors.secondary,
     fontSize: 20,
@@ -57,6 +63,7 @@ const styles = StyleSheet.create({
 
 const SingleRecipeItem = ({ recipe }) => {
   const [deleteRecipe] = useMutation(DELETE_RECIPE)
+  const [clickedIngredient, setClickedIngredient] = useState([])
   let navigate = useNavigate()
 
   const deleteAlert = () => {
@@ -83,6 +90,16 @@ const SingleRecipeItem = ({ recipe }) => {
       console.log(e)
     }
   }
+
+  const addToShoppingbag = (ingredient) => {
+    if (!clickedIngredient.includes(ingredient)) {
+      setClickedIngredient(clickedIngredient.concat(ingredient))
+    } else {
+      setClickedIngredient(clickedIngredient.filter(item => item !== ingredient))
+    }
+  }
+
+  console.log('clicked ones', clickedIngredient)
 
   return (
     <ItemView>
@@ -117,7 +134,12 @@ const SingleRecipeItem = ({ recipe }) => {
         <View style={styles.instructionsContent}>
           <Text recipeBody style={{ marginBottom: 10 }}>INGREDIENTS</Text>
           {recipe.ingredients?.map((ingredient, i) =>
-            <Text recipeBody key={i}>{ingredient}</Text>
+            <View key={i} style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 7 }}>
+              <TouchableOpacity onPress={() => addToShoppingbag(ingredient)}>
+                <AntIcon name={!clickedIngredient.includes(ingredient) ? 'pluscircleo' : 'minuscircleo'} color={!clickedIngredient.includes(ingredient) ? theme.colors.secondary : theme.colors.tertiary} style={styles.ingredientIcon} />
+              </TouchableOpacity>
+              <Text recipeBody>{ingredient}</Text>
+            </View>
           )}
         </View>
         <View style={styles.instructionsContent}>
