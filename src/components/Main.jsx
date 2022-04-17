@@ -8,6 +8,7 @@ import AppBarBottom from './AppBarBottom'
 import Categories from './Categories'
 import RecipeList from './RecipeList'
 import SingleRecipe from './SingleRecipe'
+import Shoppingbag from './Shoppingbag/indes'
 import images from '../../assets/images'
 import AddNewRecipe from './AddNewRecipe'
 import DrawerNavigationView from './DrawerNavigationView'
@@ -44,6 +45,7 @@ const Main = () => {
             <Routes>
               <Route path="/" element={<Categories />} exact />
               <Route path="/add-new" element={<AddNewRecipe />} exact />
+              <Route path="/shoppingbag" element={<Shoppingbag />} exact />
               <Route path="/categories/:title" element={<RecipeList />} exact />
               <Route path="/categories/:category/:id" element={<SingleRecipe />} exact />
               <Route path="*" element={<Navigate to="/" replace />} />

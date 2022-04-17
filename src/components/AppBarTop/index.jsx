@@ -61,11 +61,15 @@ const AppBarTop = ({ drawer }) => {
         <Ionicons name='menu-sharp' style={styles.navIcons} />
       </TouchableOpacity>
       <View style={styles.rightCol}>
-        <AppBarTab link='/add-new'><Icon name='plus' style={styles.navIcons} /></AppBarTab>
+        <AppBarTab link='/add-new'>
+          <Icon name='plus' style={styles.navIcons} />
+        </AppBarTab>
         <TouchableOpacity onPress={toggleOverlay}>
           <Icon name='search1' style={styles.navIcons} />
         </TouchableOpacity>
-        <Ionicons name='basket-outline' style={styles.navIcons} />
+        <AppBarTab link='/shoppingbag'>
+          <Ionicons name='basket-outline' style={styles.navIcons} />
+        </AppBarTab>
       </View>
       <SearchOverlay
         toggleOverlay={toggleOverlay}
