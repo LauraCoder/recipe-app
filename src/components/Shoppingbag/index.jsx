@@ -1,10 +1,10 @@
+import { useState } from 'react'
 import { FlatList, StyleSheet, View, TouchableOpacity } from 'react-native'
 import Text from '../Text'
 import useIngredients from '../../hooks/useIngredients'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import MaterialCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import theme from '../../theme'
-import { useState } from 'react'
 
 const styles = StyleSheet.create({
   header: {

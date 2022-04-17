@@ -33,3 +33,11 @@ export const DELETE_RECIPE = gql`
     }
   }
 `
+
+export const ADD_INGREDIENT = gql`
+  mutation AddIngredient($ingredient: String!) {
+    addIngredient(ingredient: $ingredient) {
+      ingredient
+    }
+  }
+`
