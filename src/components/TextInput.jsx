@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     color: theme.colors.textPrimary,
-    shadowColor: '#000',
+    shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   arrayInput: {
     backgroundColor: theme.colors.white,
