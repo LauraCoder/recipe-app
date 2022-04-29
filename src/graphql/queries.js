@@ -30,6 +30,7 @@ export const GET_RECIPES = gql`
 export const GET_INCREDIENTS = gql`
   query AllIngredients {
     allIngredients {
+      id
       ingredient
     }
   }

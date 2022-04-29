@@ -4,11 +4,13 @@ import IngredientRow from './IngredientRow'
 import ShoppingbagHeader from './ShoppingbagHeader'
 
 const Shoppingbag = () => {
-  const { ingredients } = useIngredients()
+  const { ingredients, refetch } = useIngredients()
 
   const renderIngredient = ({ item }) => (
     <IngredientRow
-      ingredient={item.ingredient}
+      ingredient={item?.ingredient}
+      id={item?.id}
+      refetch={refetch}
     />
   )
 
@@ -16,7 +18,7 @@ const Shoppingbag = () => {
     <FlatList
       data={ingredients}
       renderItem={renderIngredient}
-      keyExtractor={item => ingredients.indexOf(item)}
+      keyExtractor={item => item.id}
       contentContainerStyle={{ paddingVertical: 15, paddingHorizontal: 5 }}
       ListHeaderComponent={<ShoppingbagHeader />}
     />

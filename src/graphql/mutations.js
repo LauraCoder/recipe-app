@@ -41,3 +41,12 @@ export const ADD_INGREDIENT = gql`
     }
   }
 `
+
+export const DELETE_INGREDIENT = gql`
+  mutation DeteleIngredient($deleteIngredientId: ID) {
+    deleteIngredient(id: $deleteIngredientId) {
+      id
+      ingredient
+    }
+  }
+`

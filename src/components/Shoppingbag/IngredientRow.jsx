@@ -5,6 +5,8 @@ import AntIcon from 'react-native-vector-icons/AntDesign'
 import MaterialCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import theme from '../../theme'
 
+import useDeleteIngredient from '../../hooks/useDeleteIngredient'
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
@@ -32,8 +34,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const IngredientRow = ({ ingredient }) => {
+const IngredientRow = ({ ingredient, id, refetch }) => {
   const [clickedIngredient, setClickedIngredient] = useState([])
+  const [deleteIngredient] = useDeleteIngredient()
+
+  const deleteSingleIngredient = () => {
+    deleteIngredient(id)
+  }
 
   const checkIngredient = (ingredient) => {
     if (!clickedIngredient.includes(ingredient)) {
@@ -45,11 +52,14 @@ const IngredientRow = ({ ingredient }) => {
 
   return (
     <View style={styles.row}>
-      <AntIcon
-        name='minuscircleo'
-        color={theme.colors.secondary}
-        style={styles.ingredientIcon}
-      />
+      <TouchableOpacity onPress={() => refetch()}><Text>Refetch</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => deleteSingleIngredient(id)}>
+        <AntIcon
+          name='minuscircleo'
+          color={theme.colors.secondary}
+          style={styles.ingredientIcon}
+        />
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => checkIngredient(ingredient)} style={{ flex: 1, flexDirection: 'row' }}>
         <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
           <Text
