@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import Text from '../Text'
-import AntIcon from 'react-native-vector-icons/AntDesign'
+//import AntIcon from 'react-native-vector-icons/AntDesign'
 import MaterialCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import theme from '../../theme'
 
-import useDeleteIngredient from '../../hooks/useDeleteIngredient'
+//import useDeleteIngredient from '../../hooks/useDeleteIngredient'
 
 const styles = StyleSheet.create({
   row: {
@@ -34,32 +34,35 @@ const styles = StyleSheet.create({
   },
 })
 
-const IngredientRow = ({ ingredient, id, refetch }) => {
+const IngredientRow = ({ ingredient, id, setToDelete, toDelete }) => {
   const [clickedIngredient, setClickedIngredient] = useState([])
-  const [deleteIngredient] = useDeleteIngredient()
+  //const [deleteIngredient] = useDeleteIngredient()
 
-  const deleteSingleIngredient = () => {
+  /*const deleteSingleIngredient = () => {
     deleteIngredient(id)
-  }
+  }*/
 
   const checkIngredient = (ingredient) => {
     if (!clickedIngredient.includes(ingredient)) {
       setClickedIngredient(clickedIngredient.concat(ingredient))
+      setToDelete([...toDelete, id])
     } else {
       setClickedIngredient(clickedIngredient.filter(item => item !== ingredient))
+      setToDelete(toDelete.filter(item => item !== id))
     }
   }
 
-  return (
-    <View style={styles.row}>
-      <TouchableOpacity onPress={() => refetch()}><Text>Refetch</Text></TouchableOpacity>
+  /*
       <TouchableOpacity onPress={() => deleteSingleIngredient(id)}>
         <AntIcon
           name='minuscircleo'
           color={theme.colors.secondary}
           style={styles.ingredientIcon}
         />
-      </TouchableOpacity>
+      </TouchableOpacity>*/
+
+  return (
+    <View style={styles.row}>
       <TouchableOpacity onPress={() => checkIngredient(ingredient)} style={{ flex: 1, flexDirection: 'row' }}>
         <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
           <Text
