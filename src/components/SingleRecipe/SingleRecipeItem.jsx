@@ -7,6 +7,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign'
 import { DELETE_RECIPE } from '../../graphql/mutations'
 import { ADD_INGREDIENT } from '../../graphql/mutations'
 import useIngredients from '../../hooks/useIngredients'
+import useDeleteIngredient from '../../hooks/useDeleteIngredient'
 
 import theme from '../../theme'
 import Image from '../Image'
@@ -67,12 +68,19 @@ const SingleRecipeItem = ({ recipe }) => {
   const [deleteRecipe] = useMutation(DELETE_RECIPE)
   const [addIngredient] = useMutation(ADD_INGREDIENT)
   const { ingredients } = useIngredients()
+  const [deleteIngredient] = useDeleteIngredient()
   const [clickedIngredient, setClickedIngredient] = useState([])
   let navigate = useNavigate()
 
   let shoppingbagList = ingredients
     ? ingredients.map(edge => edge.ingredient)
     : []
+
+  let shoppingbagListID = ingredients
+    ? ingredients.map(edge => edge)
+    : []
+
+  //console.log('sdijdsf', shoppingbagListID)
 
   const deleteAlert = () => {
     Alert.alert(
@@ -113,11 +121,12 @@ const SingleRecipeItem = ({ recipe }) => {
         console.log(e)
       }
     } else {
+      const findIngredientIndex = shoppingbagList.indexOf(ingredient)
+      const findIngredientID = shoppingbagListID[findIngredientIndex].id
       setClickedIngredient(clickedIngredient.filter(item => item !== ingredient))
+      deleteIngredient(findIngredientID)
     }
   }
-
-  //console.log('clicked ones', clickedIngredient)
 
   return (
     <ItemView>
@@ -173,7 +182,8 @@ const SingleRecipeItem = ({ recipe }) => {
           )}
         </View>
       </View>
-    </ItemView>)
+    </ItemView>
+  )
 }
 
 export default SingleRecipeItem

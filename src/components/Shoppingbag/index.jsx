@@ -1,8 +1,7 @@
-import { FlatList, } from 'react-native'
+import { FlatList, Alert } from 'react-native'
 import useIngredients from '../../hooks/useIngredients'
 import IngredientRow from './IngredientRow'
 import ShoppingbagHeader from './ShoppingbagHeader'
-import ShoppingbagFooter from './ShoppingbagFooter'
 
 import useDeleteIngredient from '../../hooks/useDeleteIngredient'
 import { useState } from 'react'
@@ -15,6 +14,20 @@ const Shoppingbag = () => {
 
   const deleteSingleIngredient = () => {
     toDelete.map((id) => deleteIngredient(id))
+  }
+
+  const deleteAlert = () => {
+    Alert.alert(
+      'Are you sure you want to delete these ingredients?',
+      '',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        { text: 'Delete', onPress: () => deleteSingleIngredient() }
+      ],
+    )
   }
 
   const renderIngredient = ({ item }) => (
@@ -35,9 +48,9 @@ const Shoppingbag = () => {
       contentContainerStyle={{ paddingVertical: 15, paddingHorizontal: 5 }}
       ListHeaderComponent={<ShoppingbagHeader />}
       ListFooterComponent={
-        <ShoppingbagFooter
-          deleteSingleIngredient={deleteSingleIngredient}
-        />
+        <Button onPress={() => deleteAlert()}>
+          Delete chosen
+        </Button>
       }
     />
   )

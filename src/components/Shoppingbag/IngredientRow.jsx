@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import Text from '../Text'
-//import AntIcon from 'react-native-vector-icons/AntDesign'
 import MaterialCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import theme from '../../theme'
-
-//import useDeleteIngredient from '../../hooks/useDeleteIngredient'
 
 const styles = StyleSheet.create({
   row: {
@@ -36,11 +33,6 @@ const styles = StyleSheet.create({
 
 const IngredientRow = ({ ingredient, id, setToDelete, toDelete }) => {
   const [clickedIngredient, setClickedIngredient] = useState([])
-  //const [deleteIngredient] = useDeleteIngredient()
-
-  /*const deleteSingleIngredient = () => {
-    deleteIngredient(id)
-  }*/
 
   const checkIngredient = (ingredient) => {
     if (!clickedIngredient.includes(ingredient)) {
@@ -51,15 +43,6 @@ const IngredientRow = ({ ingredient, id, setToDelete, toDelete }) => {
       setToDelete(toDelete.filter(item => item !== id))
     }
   }
-
-  /*
-      <TouchableOpacity onPress={() => deleteSingleIngredient(id)}>
-        <AntIcon
-          name='minuscircleo'
-          color={theme.colors.secondary}
-          style={styles.ingredientIcon}
-        />
-      </TouchableOpacity>*/
 
   return (
     <View style={styles.row}>
