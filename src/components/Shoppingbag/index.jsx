@@ -12,8 +12,19 @@ const Shoppingbag = () => {
   const [deleteIngredient] = useDeleteIngredient()
   const [toDelete, setToDelete] = useState([])
 
+  const deleteConfirmation = () => {
+    Alert.alert(
+      'Ingredient deleted',
+      '',
+      [
+        { text: 'Ok', onPress: () => refetch() }
+      ],
+    )
+  }
+
   const deleteSingleIngredient = () => {
     toDelete.map((id) => deleteIngredient(id))
+    deleteConfirmation()
   }
 
   const deleteAlert = () => {

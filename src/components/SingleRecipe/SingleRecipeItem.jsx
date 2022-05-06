@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 const SingleRecipeItem = ({ recipe }) => {
   const [deleteRecipe] = useMutation(DELETE_RECIPE)
   const [addIngredient] = useMutation(ADD_INGREDIENT)
-  const { ingredients } = useIngredients()
+  const { ingredients, refetch } = useIngredients()
   const [deleteIngredient] = useDeleteIngredient()
   const [clickedIngredient, setClickedIngredient] = useState([])
   let navigate = useNavigate()
@@ -79,8 +79,6 @@ const SingleRecipeItem = ({ recipe }) => {
   let shoppingbagListID = ingredients
     ? ingredients.map(edge => edge)
     : []
-
-  //console.log('sdijdsf', shoppingbagListID)
 
   const deleteAlert = () => {
     Alert.alert(
@@ -108,7 +106,7 @@ const SingleRecipeItem = ({ recipe }) => {
   }
 
   const addToShoppingbag = async (ingredient) => {
-    if (!clickedIngredient.includes(ingredient) || !shoppingbagList.includes(ingredient)) {
+    if (!clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)) {
       try {
         setClickedIngredient(clickedIngredient.concat(ingredient))
         const { data } = await addIngredient({
@@ -117,14 +115,20 @@ const SingleRecipeItem = ({ recipe }) => {
           }
         })
         console.log(data)
+        refetch()
       } catch (e) {
         console.log(e)
       }
     } else {
-      const findIngredientIndex = shoppingbagList.indexOf(ingredient)
-      const findIngredientID = shoppingbagListID[findIngredientIndex].id
-      setClickedIngredient(clickedIngredient.filter(item => item !== ingredient))
-      deleteIngredient(findIngredientID)
+      try {
+        const findIngredientIndex = shoppingbagList.indexOf(ingredient)
+        const findIngredientID = shoppingbagListID[findIngredientIndex].id
+        setClickedIngredient(clickedIngredient.filter(item => item !== ingredient))
+        deleteIngredient(findIngredientID)
+        refetch()
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 
