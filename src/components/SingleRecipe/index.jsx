@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native'
 import { ScrollView, } from 'react-native'
-//import { recipeList } from '../../../data/recipes'
 import useRecipes from '../../hooks/useRecipes'
 import SingleRecipeHeader from './SingleRecipeHeader'
 import SingleRecipeItem from './SingleRecipeItem'
@@ -14,7 +13,7 @@ const SingleRecipe = () => {
 
   return (
     <ScrollView style={{ paddingHorizontal: 4 }}>
-      <SingleRecipeHeader navigate={navigate} rating={clickedRecipe.rating} />
+      <SingleRecipeHeader navigate={navigate} rating={clickedRecipe?.rating} />
       <SingleRecipeItem recipe={clickedRecipe} />
     </ScrollView>
   )

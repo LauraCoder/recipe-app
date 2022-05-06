@@ -52,10 +52,7 @@ const AddNewRecipe = () => {
           instructions
         }
       })
-      console.log('nav', `/categories/${data?.addRecipe?.category}/${data?.addRecipe?.id}`)
-      console.log(data)
-      navigate(`/categories/${category}`)
-      //navigate(`/categories/${data?.addRecipe?.category}/${data?.addRecipe?.id}`)
+      navigate(`/categories/${category}/${data.addRecipe.id}`)
     } catch (e) {
       console.log(e)
     }

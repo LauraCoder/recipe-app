@@ -134,23 +134,23 @@ const SingleRecipeItem = ({ recipe }) => {
 
   return (
     <ItemView>
-      <Image singleRecipe image={recipe.image} />
+      <Image singleRecipe image={recipe?.image} />
       <View style={styles.content}>
-        <Text recipeSubheading>{recipe.title}</Text>
+        <Text recipeSubheading>{recipe?.title}</Text>
         <View style={styles.row}>
           <View style={styles.details}>
             <View style={styles.detail}>
               <FontIcon name='user' style={styles.detailIcon} />
-              <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>{recipe.servings}</Text>
+              <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>{recipe?.servings}</Text>
             </View>
             <View style={styles.detail}>
               <FontIcon name='clock' style={styles.detailIcon} />
-              {recipe.cookingTime < 15
+              {recipe?.cookingTime < 15
                 ? <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>
                   max. 15 min
                 </Text>
                 : <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>
-                  {recipe.cookingTime} min
+                  {recipe?.cookingTime} min
                 </Text>
               }
             </View>
@@ -164,7 +164,7 @@ const SingleRecipeItem = ({ recipe }) => {
         </View>
         <View style={styles.instructionsContent}>
           <Text recipeBody style={{ marginBottom: 10 }}>INGREDIENTS</Text>
-          {recipe.ingredients?.map((ingredient, i) =>
+          {recipe?.ingredients?.map((ingredient, i) =>
             <View key={i} style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 7 }}>
               <TouchableOpacity onPress={() => addToShoppingbag(ingredient)}>
                 <AntIcon
@@ -178,7 +178,7 @@ const SingleRecipeItem = ({ recipe }) => {
           )}
         </View>
         <View style={styles.instructionsContent}>
-          {recipe.instructions?.map((step, i) =>
+          {recipe?.instructions?.map((step, i) =>
             <Text recipeBody key={i} style={{ marginBottom: 10 }}>
               <Text color='primary' fontWeight='bold' style={{ fontSize: 18 }}>{i + 1}: </Text>
               {step}
