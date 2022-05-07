@@ -19,7 +19,9 @@ const DrawerNavigationView = ({ drawer }) => (
   <View style={styles.container}>
     <View style={styles.content}>
       <Text heading style={{ padding: 16 }}>Recipe Book</Text>
-      <AppBarTab link='/' onPress={() => drawer.current.closeDrawer()}>All categories</AppBarTab>
+      <AppBarTab link='/' onPress={() => drawer.current.closeDrawer()}>
+        All categories
+      </AppBarTab>
     </View>
   </View>
 )

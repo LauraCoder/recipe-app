@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Constants from 'expo-constants'
-import { SearchBar, Overlay } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import theme from '../../theme'
 import AppBarTab from './AppBarTab'
+import SearchOverlay from './SearchOverlay'
 
 const styles = StyleSheet.create({
   container: {
@@ -29,22 +29,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 })
-
-const SearchOverlay = ({ toggleOverlay, visible, search, updateSearch }) => (
-  <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: 300, padding: 5 }}>
-    <SearchBar
-      placeholder='Type here...'
-      onChangeText={updateSearch}
-      value={search}
-      containerStyle={{ backgroundColor: '#fff', borderBottomColor: 'transparent', borderTopColor: 'transparent' }}
-      inputContainerStyle={{ backgroundColor: '#fff' }}
-      searchIcon={{ size: 20 }}
-      showLoading
-      showCancel
-      lightTheme
-    />
-  </Overlay>
-)
 
 const AppBarTop = ({ drawer }) => {
   const [visible, setVisible] = useState(false)

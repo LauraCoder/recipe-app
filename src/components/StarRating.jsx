@@ -27,19 +27,6 @@ const StarRating  = ({ warning, style,  ...props }) => {
       {...props}
     />
   )
-
-  /*return (
-    <Rating
-      type='custom'
-      ratingColor={theme.colors.tertiary}
-      ratingBackgroundColor={theme.colors.secondary}
-      tintColor={theme.colors.white}
-      startingValue={0}
-      style={ratingStyle}
-      onFinishRating={value => helpers.setValue(value)}
-      {...props}
-    />
-  )*/
 }
 
 export default StarRating

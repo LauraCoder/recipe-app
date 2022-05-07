@@ -48,7 +48,18 @@ const styles = StyleSheet.create({
   },
 })
 
-const Text = ({ heading, subHeading, recipeBody, recipeSubheading, details, color, fontSize, fontWeight, style, ...props }) => {
+const Text = ({
+  heading,
+  subHeading,
+  recipeBody,
+  recipeSubheading,
+  details,
+  color,
+  fontSize,
+  fontWeight,
+  style,
+  ...props
+}) => {
   const textStyle = [
     styles.text,
     heading && styles.headingStyle,

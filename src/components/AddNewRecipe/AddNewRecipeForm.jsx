@@ -1,19 +1,16 @@
-import { View, StyleSheet, TouchableOpacity, } from 'react-native'
-import { Picker } from '@react-native-picker/picker'
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import FeatherIcon from 'react-native-vector-icons/Feather'
-import { Field, FieldArray, } from 'formik'
+import { View, StyleSheet, } from 'react-native'
+import { Field, } from 'formik'
 
-import useCategories from '../../hooks/useCategories'
 import theme from '../../theme'
 import FormikTextInput from '../FormikTextInput'
-import Text from '../Text'
 import Button from '../Button'
-import FormikTextArrayInput from '../FormikTextArrayInput'
-import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import StarRatingInput from '../StarRatingInput'
-import FormikNumberInput from '../FormikNumberInput'
 import AddImage from './AddImage'
+import AddCategory from './AddCategory'
+import AddServings from './AddServings'
+import AddCookingTime from './AddCookingTime'
+import AddIngredients from './AddIngredients'
+import AddDirections from './AddDirections'
 
 
 const styles = StyleSheet.create({
@@ -34,127 +31,32 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
-  arrayInput: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 10,
-    paddingLeft: 10,
-    backgroundColor: theme.colors.white,
-    borderRadius: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  picker: {
-    flex: 1,
-    color: theme.colors.textPrimary,
-  },
-  pickerLabel: {
-    flex: 1,
-    color: '#a1a1a1',
-  },
-  deleteIcon: {
-    fontSize: 30,
-    color: theme.colors.secondary,
-    backgroundColor: theme.colors.white,
-    borderRadius: 50,
-    padding: 5,
-  },
-  detailIcon: {
-    fontSize: 20,
-    color: theme.colors.secondary,
-    backgroundColor: theme.colors.white,
-    borderRadius: 50,
-    marginRight: 10,
-  }
 })
 
-const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => {
-  const { categories } = useCategories()
-
-  return (
-    <View style={styles.component}>
-      <View style={styles.item}>
-        <AddImage values={values} />
-      </View>
-      <FormikTextInput name='title' placeholder='Title' />
-      <View style={styles.item}>
-        <Picker
-          useNativeAndroidPickerStyle={false}
-          style={styles.picker}
-          onValueChange={handleChange('category')}
-          onBlur={handleBlur('category')}
-          selectedValue={values.category}
-        >
-          <Picker.Item style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }} label='Category' value={null} />
-          {categories.map(category =>
-            <Picker.Item
-              style={{ fontSize: theme.fontSizes.body, color: theme.colors.textPrimary }}
-              label={category.title}
-              value={category.title}
-              key={category.id}
-            />
-          )}
-        </Picker>
-      </View>
-      <View style={styles.item}>
-        <Field name='rating' as={StarRatingInput} imageSize={36} />
-      </View>
-      <View style={{ flexDirection: 'row', }}>
-        <View style={styles.arrayInput} marginRight={10}>
-          <FormikNumberInput name='servings' placeholder='Servings' style={{ flex: 0.95 }} />
-          <FontIcon name='user' style={styles.detailIcon} />
-        </View>
-        <View style={styles.arrayInput}>
-          <FormikNumberInput name='cookingTime' placeholder='Cooking Time' style={{ flex: 0.95 }} />
-          <FontIcon name='clock' style={styles.detailIcon} />
-        </View>
-      </View>
-      <Text heading style={{ marginTop: 35 }}>Ingredients</Text>
-      <FieldArray name='ingredients'>
-        {({ remove, push }) => (
-          <>
-            {values.ingredients.length > 0 &&
-                values.ingredients.map((ingredient, index) => (
-                  <View style={styles.arrayInput} key={index}>
-                    <FormikTextArrayInput name={`ingredients.${index}`} placeholder='Ingredient' style={{ flex: 0.95, }} />
-                    <TouchableOpacity onPress={() => remove(index)}>
-                      <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
-                    </TouchableOpacity>
-                  </View>
-                ))}
-            <Button secondary onPress={() => push({ ingredients: '' })}>Add more ingredients</Button>
-          </>
-        )}
-      </FieldArray>
-      <Text heading style={{ marginTop: 35 }}>Directions</Text>
-      <FieldArray name='instructions'>
-        {({ remove, push }) => (
-          <>
-            {values.instructions.length > 0 &&
-                values.instructions.map((step, index) => (
-                  <View style={styles.arrayInput} key={index}>
-                    <Text color='primary' fontSize='secondaryHeading' fontWeight='bold'>{index + 1}</Text>
-                    <FormikTextArrayInput name={`instructions.${index}`} placeholder='Step' style={{ flex: 0.95, }} />
-                    <TouchableOpacity onPress={() => remove(index)}>
-                      <FeatherIcon name='x-circle' style={styles.deleteIcon}/>
-                    </TouchableOpacity>
-                  </View>
-                ))}
-            <Button secondary onPress={() => push({ instructions: '' })}>Add more steps</Button>
-          </>
-        )}
-      </FieldArray>
-      <Button onPress={onSubmit} style={{ marginTop: 45 }}>Save recipe</Button>
+const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => (
+  <View style={styles.component}>
+    <View style={styles.item}>
+      <AddImage values={values} />
     </View>
-  )
-}
+    <FormikTextInput name='title' placeholder='Title' />
+    <View style={styles.item}>
+      <AddCategory
+        values={values}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+      />
+    </View>
+    <View style={styles.item}>
+      <Field name='rating' as={StarRatingInput} imageSize={36} />
+    </View>
+    <View style={{ flexDirection: 'row', }}>
+      <AddServings />
+      <AddCookingTime />
+    </View>
+    <AddIngredients values={values} />
+    <AddDirections values={values} />
+    <Button onPress={onSubmit} style={{ marginTop: 45 }}>Save recipe</Button>
+  </View>
+)
 
 export default AddNewRecipeForm

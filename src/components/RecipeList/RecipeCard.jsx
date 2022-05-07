@@ -37,31 +37,29 @@ const styles = StyleSheet.create({
   },
 })
 
-const RecipeCard = ({ title, servings, cookingTime, rating, image }) => {
-  return (
-    <ItemView>
-      <Image image={image} />
-      <View style={styles.content}>
-        <Text subHeading>{title}</Text>
-        <View style={styles.details}>
-          <View style={styles.detail}>
-            <Icon name='user' style={styles.detailIcon} />
-            <Text details>{servings}</Text>
-          </View>
-          <View style={styles.detail}>
-            <Icon name='clock' style={styles.detailIcon} />
-            {cookingTime < 15
-              ? <Text details>max. 15 min</Text>
-              : <Text details>{cookingTime} min</Text>
-            }
-          </View>
+const RecipeCard = ({ title, servings, cookingTime, rating, image }) => (
+  <ItemView>
+    <Image image={image} />
+    <View style={styles.content}>
+      <Text subHeading>{title}</Text>
+      <View style={styles.details}>
+        <View style={styles.detail}>
+          <Icon name='user' style={styles.detailIcon} />
+          <Text details>{servings}</Text>
+        </View>
+        <View style={styles.detail}>
+          <Icon name='clock' style={styles.detailIcon} />
+          {cookingTime < 15
+            ? <Text details>max. 15 min</Text>
+            : <Text details>{cookingTime} min</Text>
+          }
         </View>
       </View>
-      <View style={styles.footer}>
-        <StarRating startingValue={rating} imageSize={20} />
-      </View>
-    </ItemView>
-  )
-}
+    </View>
+    <View style={styles.footer}>
+      <StarRating startingValue={rating} imageSize={20} />
+    </View>
+  </ItemView>
+)
 
 export default RecipeCard

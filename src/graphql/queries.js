@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client'
+import { RECIPE_DETAILS, INGREDIENT_DETAILS } from './fragments'
 
 export const GET_CATEGORIES = gql`
   query AllRecipes {
@@ -13,25 +14,17 @@ export const GET_CATEGORIES = gql`
 export const GET_RECIPES = gql`
   query AllRecipes {
     allRecipes {
-      id
-      title
-      category
-      servings
-      cookingTime
-      rating
-      ingredients
-      instructions
-      dateAdded
-      image
+      ...RecipeDetails
     }
   }
+  ${RECIPE_DETAILS}
 `
 
 export const GET_INCREDIENTS = gql`
   query AllIngredients {
     allIngredients {
-      id
-      ingredient
+      ...IngredientDetails
     }
   }
+  ${INGREDIENT_DETAILS}
 `

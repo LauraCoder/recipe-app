@@ -12,15 +12,13 @@ const styles = StyleSheet.create({
   }
 })
 
-const CategoryCard = ({ title, image, }) => {
-  return (
-    <ItemView>
-      <Image image={image} />
-      <View style={styles.content}>
-        <Text subHeading>{title}</Text>
-      </View>
-    </ItemView>
-  )
-}
+const CategoryCard = ({ title, image, }) => (
+  <ItemView>
+    <Image image={image} />
+    <View style={styles.content}>
+      <Text subHeading>{title}</Text>
+    </View>
+  </ItemView>
+)
 
 export default CategoryCard

@@ -3,7 +3,6 @@ import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native'
 
 import useRecipes from '../../hooks/useRecipes'
-//import { recipeList } from '../../../data/recipes'
 import RecipeCard from './RecipeCard'
 import HeaderComponent from './HeaderComponent'
 
@@ -17,7 +16,10 @@ const RecipeList = () => {
     : []
 
   const renderRecipeCard = ({ item }) => (
-    <Pressable style={{ flex: 0.5 }} onPress={() => navigate(`/categories/${item.category}/${item.id}`)}>
+    <Pressable
+      style={{ flex: 0.5 }}
+      onPress={() => navigate(`/categories/${item.category}/${item.id}`)}
+    >
       <RecipeCard
         id={item.id}
         title={item.title}

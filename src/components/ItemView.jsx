@@ -20,12 +20,10 @@ const styles = StyleSheet.create({
   },
 })
 
-const ItemView = ({ children, ...props }) => {
-  return (
-    <View style={styles.item} {...props}>
-      {children}
-    </View>
-  )
-}
+const ItemView = ({ children, ...props }) => (
+  <View style={styles.item} {...props}>
+    {children}
+  </View>
+)
 
 export default ItemView

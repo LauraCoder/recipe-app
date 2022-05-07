@@ -141,7 +141,9 @@ const SingleRecipeItem = ({ recipe }) => {
           <View style={styles.details}>
             <View style={styles.detail}>
               <FontIcon name='user' style={styles.detailIcon} />
-              <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>{recipe?.servings}</Text>
+              <Text details style={{ fontSize: theme.fontSizes.recipeBody }}>
+                {recipe?.servings}
+              </Text>
             </View>
             <View style={styles.detail}>
               <FontIcon name='clock' style={styles.detailIcon} />
@@ -168,8 +170,16 @@ const SingleRecipeItem = ({ recipe }) => {
             <View key={i} style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 7 }}>
               <TouchableOpacity onPress={() => addToShoppingbag(ingredient)}>
                 <AntIcon
-                  name={!clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient) ? 'pluscircleo' : 'minuscircleo'}
-                  color={!clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient) ? theme.colors.secondary : theme.colors.tertiary}
+                  name={
+                    !clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)
+                      ? 'pluscircleo'
+                      : 'minuscircleo'
+                  }
+                  color={
+                    !clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)
+                      ? theme.colors.secondary
+                      : theme.colors.tertiary
+                  }
                   style={styles.ingredientIcon}
                 />
               </TouchableOpacity>

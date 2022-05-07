@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-native'
 
 import CategoryCard from './CategoryCard'
 import useCategories from '../../hooks/useCategories'
-//import { categoryList } from '../../../data/categories'
 
 const Categories = () => {
   const { categories } = useCategories()

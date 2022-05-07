@@ -18,15 +18,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const SingleRecipeHeader = ({ navigate, rating }) => {
-  return (
-    <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigate(-1)}>
-        <Icon name='arrowleft' style={styles.goBackIcon} />
-      </TouchableOpacity>
-      <StarRating startingValue={rating} imageSize={22} tintColor={'#F9F8FB'} />
-    </View>
-  )
-}
+const SingleRecipeHeader = ({ navigate, rating }) => (
+  <View style={styles.header}>
+    <TouchableOpacity onPress={() => navigate(-1)}>
+      <Icon name='arrowleft' style={styles.goBackIcon} />
+    </TouchableOpacity>
+    <StarRating startingValue={rating} imageSize={22} tintColor={'#F9F8FB'} />
+  </View>
+)
 
 export default SingleRecipeHeader

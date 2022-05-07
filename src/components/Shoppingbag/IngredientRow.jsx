@@ -46,7 +46,10 @@ const IngredientRow = ({ ingredient, id, setToDelete, toDelete }) => {
 
   return (
     <View style={styles.row}>
-      <TouchableOpacity onPress={() => checkIngredient(ingredient)} style={{ flex: 1, flexDirection: 'row' }}>
+      <TouchableOpacity
+        onPress={() => checkIngredient(ingredient)}
+        style={{ flex: 1, flexDirection: 'row' }}
+      >
         <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
           <Text
             style={clickedIngredient.includes(ingredient)
@@ -58,8 +61,14 @@ const IngredientRow = ({ ingredient, id, setToDelete, toDelete }) => {
         </View>
         <View style={{ alignItems: 'flex-end', }}>
           <MaterialCIcon
-            name={clickedIngredient.includes(ingredient) ? 'check-circle-outline' : 'checkbox-blank-circle-outline'}
-            color={clickedIngredient.includes(ingredient) ? theme.colors.primary : theme.colors.secondary }
+            name={clickedIngredient.includes(ingredient)
+              ? 'check-circle-outline'
+              : 'checkbox-blank-circle-outline'
+            }
+            color={clickedIngredient.includes(ingredient)
+              ? theme.colors.primary
+              : theme.colors.secondary
+            }
             style={styles.checkIcon}
           />
         </View>

@@ -17,8 +17,14 @@ const styles = StyleSheet.create({
 })
 
 const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, addFilters }) => (
-  <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: 300, padding: 15 }}>
-    <Text fontSize='secondaryHeading' style={{ alignSelf: 'center', marginBottom: 20 }}>Filter by</Text>
+  <Overlay
+    isVisible={visible}
+    onBackdropPress={toggleOverlay}
+    overlayStyle={{ width: '85%', padding: 15 }}
+  >
+    <Text fontSize='secondaryHeading' style={{ alignSelf: 'center', marginBottom: 20 }}>
+      Filter by
+    </Text>
     <View style={[styles.singleFilter, { marginBottom: 15 }]}>
       <Text subHeading style={{ paddingBottom: 7 }}>Rating</Text>
       <Slider
@@ -43,7 +49,7 @@ const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, ad
           ),
         }}
       />
-      <StarRating readOnly startingValue={ratingValue} imageSize={25} />
+      <StarRating readOnly startingValue={ratingValue} imageSize={30} />
     </View>
     <View style={styles.singleFilter}>
       <Text subHeading style={{ paddingBottom: 7 }}>Max. cooking time</Text>
@@ -87,7 +93,7 @@ const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, ad
         }
       />
     </View>
-    <View style={{ flexDirection: 'row', alignContent: 'space-between', }}>
+    <View style={{ flexDirection: 'row', }}>
       <Button onPress={addFilters}>Add filters</Button>
       <Button secondary onPress={toggleOverlay} style={{ width: '50%' }}>Cancel</Button>
     </View>
