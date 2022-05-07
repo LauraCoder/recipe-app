@@ -9,11 +9,18 @@ import HeaderComponent from './HeaderComponent'
 const RecipeList = () => {
   const { title } = useParams()
   let navigate = useNavigate()
-  const { recipes } = useRecipes()
+  const { recipes, fetchMore } = useRecipes({
+    first: 8,
+  })
 
   const filteredRecipeList = recipes
     ? recipes.filter(recipe => recipe.category === title)
     : []
+
+  const onEndReach = () => {
+    console.log('You have reached the end of the list')
+    fetchMore()
+  }
 
   const renderRecipeCard = ({ item }) => (
     <Pressable
@@ -44,6 +51,8 @@ const RecipeList = () => {
       numColumns={2}
       ListHeaderComponent={() => <HeaderComponent title={title} navigate={navigate} />}
       contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 5, }}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   )
 }

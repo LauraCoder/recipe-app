@@ -8,10 +8,10 @@ import { useState } from 'react'
 import Button from '../Button'
 
 const Shoppingbag = () => {
-  const { ingredients, refetch } = useIngredients()
+  const { ingredients } = useIngredients()
   const [deleteIngredient] = useDeleteIngredient()
   const [toDelete, setToDelete] = useState([])
-
+  /*
   const deleteConfirmation = () => {
     Alert.alert(
       'Ingredient deleted',
@@ -20,32 +20,45 @@ const Shoppingbag = () => {
         { text: 'Ok', onPress: () => refetch() }
       ],
     )
-  }
+  }*/
 
   const deleteSingleIngredient = () => {
     toDelete.map((id) => deleteIngredient(id))
-    deleteConfirmation()
+    //deleteConfirmation()
   }
 
   const deleteAlert = () => {
-    Alert.alert(
-      'Are you sure you want to delete these ingredients?',
-      '',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
-        { text: 'Delete', onPress: () => deleteSingleIngredient() }
-      ],
-    )
+    if (toDelete.length <= 0) {
+      Alert.alert(
+        'Please choose some ingredients first',
+        '',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+        ]
+      )
+    } else {
+      Alert.alert(
+        'Are you sure you want to delete these ingredients?',
+        '',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          { text: 'Delete', onPress: () => deleteSingleIngredient() }
+        ],
+      )
+    }
   }
 
   const renderIngredient = ({ item }) => (
     <IngredientRow
       ingredient={item?.ingredient}
       id={item?.id}
-      refetch={refetch}
+      //refetch={refetch}
       setToDelete={setToDelete}
       toDelete={toDelete}
     />

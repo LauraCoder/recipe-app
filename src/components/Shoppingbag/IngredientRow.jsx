@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const IngredientRow = ({ ingredient, id, setToDelete, toDelete }) => {
+const IngredientRow = ({ ingredient, id, setToDelete, toDelete, }) => {
   const [clickedIngredient, setClickedIngredient] = useState([])
 
   const checkIngredient = (ingredient) => {

@@ -1,11 +1,12 @@
 import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-native'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import { DELETE_RECIPE } from '../../graphql/mutations'
 import { ADD_INGREDIENT } from '../../graphql/mutations'
+import { GET_INCREDIENTS } from '../../graphql/queries'
 import useIngredients from '../../hooks/useIngredients'
 import useDeleteIngredient from '../../hooks/useDeleteIngredient'
 
@@ -66,11 +67,14 @@ const styles = StyleSheet.create({
 
 const SingleRecipeItem = ({ recipe }) => {
   const [deleteRecipe] = useMutation(DELETE_RECIPE)
-  const [addIngredient] = useMutation(ADD_INGREDIENT)
-  const { ingredients, refetch } = useIngredients()
-  const [deleteIngredient] = useDeleteIngredient()
+  const [addIngredient] = useMutation(ADD_INGREDIENT, {
+    refetchQueries: [ { query: GET_INCREDIENTS } ]
+  })
+  const { ingredients } = useIngredients()
+  const [deleteIngredient, result] = useDeleteIngredient()
   const [clickedIngredient, setClickedIngredient] = useState([])
   let navigate = useNavigate()
+  const [error, setError] = useState('')
 
   let shoppingbagList = ingredients
     ? ingredients.map(edge => edge.ingredient)
@@ -104,6 +108,12 @@ const SingleRecipeItem = ({ recipe }) => {
       console.log(e)
     }
   }
+/*
+  useEffect(() => {
+    if (result.data && !result.data.deleteIngredient ) {
+      setError('Ingredient not found')
+    }
+  }, [result.data, setError])*/
 
   const addToShoppingbag = async (ingredient) => {
     if (!clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)) {
@@ -115,17 +125,15 @@ const SingleRecipeItem = ({ recipe }) => {
           }
         })
         console.log(data)
-        refetch()
       } catch (e) {
         console.log(e)
       }
-    } else {
+    } else if (clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)) {
       try {
         const findIngredientIndex = shoppingbagList.indexOf(ingredient)
         const findIngredientID = shoppingbagListID[findIngredientIndex].id
         setClickedIngredient(clickedIngredient.filter(item => item !== ingredient))
         deleteIngredient(findIngredientID)
-        refetch()
       } catch (e) {
         console.log(e)
       }
