@@ -7,8 +7,11 @@ import {
 
 import Main from './src/components/Main'
 import createApolloClient from './src/utils/apolloClient'
+import SignIn from './src/components/SignIn/Index'
 
 const apolloClient = createApolloClient()
+
+//<Main />
 
 const App = () => {
   let [fontsLoaded] = useFonts({
@@ -22,7 +25,7 @@ const App = () => {
       <>
         <NativeRouter>
           <ApolloProvider client={apolloClient}>
-            <Main />
+            <SignIn />
           </ApolloProvider>
         </NativeRouter>
       </>
