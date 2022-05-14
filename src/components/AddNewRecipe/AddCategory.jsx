@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const AddCategory = ({ values, handleChange, handleBlur, }) => {
+const AddCategory = ({ values, handleChange, handleBlur, categoryToEdit }) => {
   const { categories } = useCategories()
-
+  categoryToEdit
   return (
     <>
       <Picker
@@ -24,11 +24,18 @@ const AddCategory = ({ values, handleChange, handleBlur, }) => {
         onBlur={handleBlur('category')}
         selectedValue={values.category}
       >
-        <Picker.Item
-          style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }}
-          label='Category'
-          value={null}
-        />
+        {categoryToEdit
+          ? <Picker.Item
+            style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }}
+            label={categoryToEdit}
+            value={categoryToEdit}
+          />
+          : <Picker.Item
+            style={{ fontSize: theme.fontSizes.body, color: '#a1a1a1' }}
+            label='Category'
+            value={null}
+          />
+        }
         {categories.map(category =>
           <Picker.Item
             style={{ fontSize: theme.fontSizes.body, color: theme.colors.textPrimary }}

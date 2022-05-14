@@ -22,7 +22,6 @@ const FormikTextInput = ({ name, ...props }) => {
   const showError = meta.touched && meta.error
 
   //{showError && <Text style={styles.errorText}>{meta.error}</Text>}
-
   return (
     <View>
       <TextInput whiteInput

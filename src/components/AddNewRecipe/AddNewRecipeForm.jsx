@@ -11,6 +11,7 @@ import AddServings from './AddServings'
 import AddCookingTime from './AddCookingTime'
 import AddIngredients from './AddIngredients'
 import AddDirections from './AddDirections'
+import Text from '../Text'
 
 
 const styles = StyleSheet.create({
@@ -33,24 +34,28 @@ const styles = StyleSheet.create({
   },
 })
 
-const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, }) => (
+const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeToEdit }) => (
   <View style={styles.component}>
     <View style={styles.item}>
       <AddImage values={values} />
     </View>
-    <FormikTextInput name='title' placeholder='Title' />
+    {recipeToEdit
+      ?  <FormikTextInput name='title' value={recipeToEdit?.title} placeholder='Title' />
+      :  <FormikTextInput name='title' placeholder='Title' />
+    }
     <View style={styles.item}>
       <AddCategory
         values={values}
         handleChange={handleChange}
         handleBlur={handleBlur}
+        categoryToEdit={recipeToEdit?.category}
       />
     </View>
     <View style={styles.item}>
       <Field name='rating' as={StarRatingInput} imageSize={36} />
     </View>
     <View style={{ flexDirection: 'row', }}>
-      <AddServings />
+      <AddServings servingsToEdit={recipeToEdit?.servings} />
       <AddCookingTime />
     </View>
     <AddIngredients values={values} />

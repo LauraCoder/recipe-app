@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-native'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import AntIcon from 'react-native-vector-icons/AntDesign'
@@ -14,6 +14,7 @@ import theme from '../../theme'
 import Image from '../Image'
 import ItemView from '../ItemView'
 import Text from '../Text'
+import AddNewRecipe from '../AddNewRecipe'
 
 const styles = StyleSheet.create({
   content: {
@@ -139,7 +140,7 @@ const SingleRecipeItem = ({ recipe }) => {
       }
     }
   }
-
+  //<AddNewRecipe editRecipeDetails={recipe} />
   return (
     <ItemView>
       <Image singleRecipe image={recipe?.image} />
@@ -166,7 +167,9 @@ const SingleRecipeItem = ({ recipe }) => {
             </View>
           </View>
           <View style={styles.rightAlign}>
-            <FontIcon name='pen' style={styles.editIcon} />
+            <TouchableOpacity onPress={() => navigate('/add-new', { state: { recipe: recipe } })}>
+              <FontIcon name='pen' style={styles.editIcon} />
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => deleteAlert()}>
               <FontIcon name='trash' style={styles.trashIcon} />
             </TouchableOpacity>
