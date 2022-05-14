@@ -1,15 +1,14 @@
 import { useMutation } from '@apollo/client'
-import { useEffect } from 'react'
+import { useNavigate } from 'react-router-native'
 import { StyleSheet, ImageBackground, View, } from 'react-native'
 import { Formik } from 'formik'
+import * as yup from 'yup'
 
-import { LOGIN } from '../../graphql/mutations'
+import { REGISTER } from '../../graphql/mutations'
 import theme from '../../theme'
 import images from '../../../assets/images'
-import FormikTextInput from '../FormikTextInput'
 import Text from '../Text'
-import Button from '../Button'
-import useLogin from '../../hooks/useLogin'
+import SignUpForm from './SignUpForm'
 
 const styles = StyleSheet.create({
   container: {
@@ -43,60 +42,59 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
-    resizeMode: 'cover'
+    resizeMode: 'cover',
   },
 })
 
-const SignIn = () => {
-  const [signIn] = useLogin()
+const validationSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(2, 'Title must be longer')
+    .required('Title is required'),
+})
+
+const initialValues = {
+  username: '',
+}
+
+const SignUp = () => {
+  const [createUser, { error }] = useMutation(REGISTER)
+  let navigate = useNavigate()
 
   const onSubmit = async (values) => {
-    console.log('login', values)
-    /*const { username, password } = values
+    console.log('register', values)
+    navigate('/')
+    const { username } = values
 
     try {
-      const { data } = await signIn({ username, password })
+      const { data } = await createUser({ variables: { username } })
       console.log(data)
+      navigate('/categories')
     } catch (e) {
       console.log(e)
-    }*/
+    }
   }
-
-  /*const { image, title, category, rating, servings, cookingTime, ingredients, instructions  } = values
-    console.log('values', values)
-
-    try {
-      const { data } = await addRecipe({
-        variables: {
-          image,
-          title,
-          category,
-          servings,
-          cookingTime,
-          rating,
-          ingredients,
-          instructions
-        }
-      })
-      navigate(`/categories/${category}/${data.addRecipe.id}`)
-    } catch (e) {
-      console.log(e)
-    }*/
 
   return (
     <ImageBackground source={images.appBackground} imageStyle={{ opacity: 1 }} style={styles.image}>
       <View style={styles.header}>
         <Text heading style={styles.title}>RecipeBook</Text>
-        <Text style={{ fontSize: 25, }} >Sign In</Text>
+        <Text style={{ fontSize: 25, }} >Sign Up</Text>
       </View>
       <Formik
+        initialValues={initialValues}
         onSubmit={onSubmit}
+        validationSchema={validationSchema}
       >
-        {({ handleSubmit }) =>
+        {({ handleSubmit, values, handleChange, handleBlur, }) =>
           <View style={styles.form}>
-            <FormikTextInput name='username' placeholder='Username' />
-            <FormikTextInput name='password' placeholder='Password' />
-            <Button onPress={handleSubmit} style={{ marginTop: 45 }}>Sign In</Button>
+            <SignUpForm
+              onSubmit={handleSubmit}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              values={values}
+              error={error}
+            />
           </View>
         }
       </Formik>
@@ -104,4 +102,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignUp

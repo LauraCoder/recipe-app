@@ -54,3 +54,20 @@ export const DELETE_INGREDIENT = gql`
   }
   ${INGREDIENT_DETAILS}
 `
+
+export const REGISTER = gql`
+  mutation CreateUser($username: String!) {
+    createUser(username: $username) {
+      username
+      id
+    }
+  }
+`
+
+export const LOGIN = gql`
+  mutation Login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      value
+    }
+  }
+`

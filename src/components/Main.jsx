@@ -12,6 +12,8 @@ import Shoppingbag from './Shoppingbag'
 import images from '../../assets/images'
 import AddNewRecipe from './AddNewRecipe'
 import DrawerNavigationView from './DrawerNavigationView'
+import SignUp from './SignUp/Index'
+import SignIn from './SignIn/Index'
 
 const styles = StyleSheet.create({
   container: {
@@ -46,8 +48,11 @@ const Main = () => {
               <Route path="/" element={<Categories />} exact />
               <Route path="/add-new" element={<AddNewRecipe />} exact />
               <Route path="/shoppingbag" element={<Shoppingbag />} exact />
+              <Route path="/categories" element={<Categories />} exact />
               <Route path="/categories/:title" element={<RecipeList />} exact />
               <Route path="/categories/:category/:id" element={<SingleRecipe />} exact />
+              <Route path="/signup" element={<SignUp />} exact />
+              <Route path="/signin" element={<SignIn />} exact />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </View>
