@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react'
 import { FlatList, Pressable, } from 'react-native'
 import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native'
@@ -6,16 +7,26 @@ import useRecipes from '../../hooks/useRecipes'
 import RecipeCard from './RecipeCard'
 import HeaderComponent from './HeaderComponent'
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout))
+}
+
 const RecipeList = () => {
   const { title } = useParams()
   let navigate = useNavigate()
   const { recipes, fetchMore } = useRecipes({
     first: 8,
   })
+  const [refreshing, setRefreshing] = useState(false)
 
   const filteredRecipeList = recipes
     ? recipes.filter(recipe => recipe.category === title)
     : []
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    wait(2000).then(() => setRefreshing(false))
+  }, [])
 
   const onEndReach = () => {
     console.log('You have reached the end of the list')
@@ -53,6 +64,8 @@ const RecipeList = () => {
       contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 5, }}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
+      onRefresh={onRefresh}
+      refreshing={refreshing}
     />
   )
 }

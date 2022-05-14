@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     marginTop: 20,
   },
+  subcontent: {
+    paddingLeft: 25,
+  }
 })
 
 const DrawerNavigationView = ({ drawer }) => (
@@ -22,21 +25,23 @@ const DrawerNavigationView = ({ drawer }) => (
       <AppBarTab link='/' onPress={() => drawer.current.closeDrawer()}>
         All categories
       </AppBarTab>
-      <AppBarTab link='/categories/Snacks & Starters' onPress={() => drawer.current.closeDrawer()}>
-        Snacks & Starters
-      </AppBarTab>
-      <AppBarTab link='/categories/Salads' onPress={() => drawer.current.closeDrawer()}>
-        Salads
-      </AppBarTab>
-      <AppBarTab link='/categories/Main Courses' onPress={() => drawer.current.closeDrawer()}>
-        Main Courses
-      </AppBarTab>
-      <AppBarTab link='/categories/Desserts' onPress={() => drawer.current.closeDrawer()}>
-        Desserts
-      </AppBarTab>
-      <AppBarTab link='/categories/Drinks' onPress={() => drawer.current.closeDrawer()}>
-        Drinks
-      </AppBarTab>
+      <View style={styles.subcontent}>
+        <AppBarTab link='/categories/Snacks & Starters' onPress={() => drawer.current.closeDrawer()}>
+          Snacks & Starters
+        </AppBarTab>
+        <AppBarTab link='/categories/Salads' onPress={() => drawer.current.closeDrawer()}>
+          Salads
+        </AppBarTab>
+        <AppBarTab link='/categories/Main Courses' onPress={() => drawer.current.closeDrawer()}>
+          Main Courses
+        </AppBarTab>
+        <AppBarTab link='/categories/Desserts' onPress={() => drawer.current.closeDrawer()}>
+          Desserts
+        </AppBarTab>
+        <AppBarTab link='/categories/Drinks' onPress={() => drawer.current.closeDrawer()}>
+          Drinks
+        </AppBarTab>
+      </View>
       <AppBarTab link='/add-new' onPress={() => drawer.current.closeDrawer()}>
         Add Recipe
       </AppBarTab>

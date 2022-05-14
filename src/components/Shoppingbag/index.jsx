@@ -4,13 +4,18 @@ import IngredientRow from './IngredientRow'
 import ShoppingbagHeader from './ShoppingbagHeader'
 
 import useDeleteIngredient from '../../hooks/useDeleteIngredient'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Button from '../Button'
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout))
+}
 
 const Shoppingbag = () => {
   const { ingredients } = useIngredients()
   const [deleteIngredient] = useDeleteIngredient()
   const [toDelete, setToDelete] = useState([])
+  const [refreshing, setRefreshing] = useState(false)
   /*
   const deleteConfirmation = () => {
     Alert.alert(
@@ -21,6 +26,11 @@ const Shoppingbag = () => {
       ],
     )
   }*/
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    wait(2000).then(() => setRefreshing(false))
+  }, [])
 
   const deleteSingleIngredient = () => {
     toDelete.map((id) => deleteIngredient(id))
@@ -76,6 +86,8 @@ const Shoppingbag = () => {
           Delete chosen
         </Button>
       }
+      onRefresh={onRefresh}
+      refreshing={refreshing}
     />
   )
 }
