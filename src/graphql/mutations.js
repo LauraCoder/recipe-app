@@ -29,20 +29,26 @@ export const ADD_RECIPE = gql`
 `
 export const EDIT_RECIPE = gql`
   mutation EditRecipe(
+    $editRecipeId: ID!,
     $title: String!,
     $category: String!,
     $servings: Int!,
     $cookingTime: Int!,
     $rating: Float,
-    $image: String
+    $image: String,
+    $ingredients: [String],
+    $instructions: [String]
   ) {
     editRecipe(
+      id: $editRecipeId,
       title: $title,
       category: $category,
       servings: $servings,
       cookingTime: $cookingTime,
       rating: $rating,
-      image: $image
+      image: $image,
+      ingredients: $ingredients,
+      instructions: $instructions
     ) {
       id
       title

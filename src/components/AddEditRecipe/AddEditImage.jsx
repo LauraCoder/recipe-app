@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Permissions } from 'expo'
+//import { Permissions } from 'expo'
 import * as ImagePicker from 'expo-image-picker'
 import { View, StyleSheet, Image, } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -14,6 +14,13 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  imageInput2: {
+    justifyContent: 'center',
+  },
+  cameraIcon: {
+    position: 'absolute',
+    alignSelf: 'center'
   }
 })
 
@@ -29,6 +36,7 @@ const AddImage = ({ values }) => {
   const [image, setImage] = useState(null)
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions()
   const [statusCamera, requestPermissionCamera] = ImagePicker.useCameraPermissions()
+  const imageExist = image || values.image
 
   const toggleOverlay = () => setVisible(!visible)
 
@@ -69,16 +77,29 @@ const AddImage = ({ values }) => {
     }
   }
 
-  return (
-    <TouchableOpacity onPress={toggleOverlay} activeOpacity={.8}>
-      {image
-        ? <Image source={{ uri: image }} style={{ height: 200 }} name='image' />
+  /*
+  {imageExist
+        ? (
+          <View style={styles.imageInput2}>
+            <Image source={values.image ? { uri: values.image } : { uri: image }} style={{ height: 200 }} name='image' />
+            <MaterialIcon name='camera-plus' color='#fff' size={35} style={styles.cameraIcon} />
+          </View>
+        )
         : (
           <View style={styles.imageInput}>
             <MaterialIcon name='camera-plus' color='#fff' size={35} />
           </View>
         )
       }
+      */
+  return (
+    <TouchableOpacity onPress={toggleOverlay} activeOpacity={.8}>
+      <View style={imageExist ? styles.imageInput2 : styles.imageInput}>
+        {imageExist &&
+          <Image source={values.image ? { uri: values.image } : { uri: image }} style={{ height: 200 }} name='image' />
+        }
+        <MaterialIcon name='camera-plus' color='#fff' size={35} style={styles.cameraIcon} />
+      </View>
       <AddImageOverlay
         toggleOverlay={toggleOverlay}
         visible={visible}

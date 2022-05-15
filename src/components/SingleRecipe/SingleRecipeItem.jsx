@@ -14,7 +14,6 @@ import theme from '../../theme'
 import Image from '../Image'
 import ItemView from '../ItemView'
 import Text from '../Text'
-import AddNewRecipe from '../AddNewRecipe'
 
 const styles = StyleSheet.create({
   content: {

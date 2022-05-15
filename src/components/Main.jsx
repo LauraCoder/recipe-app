@@ -10,7 +10,7 @@ import RecipeList from './RecipeList'
 import SingleRecipe from './SingleRecipe'
 import Shoppingbag from './Shoppingbag'
 import images from '../../assets/images'
-import AddNewRecipe from './AddNewRecipe'
+import AddEditRecipe from './AddEditRecipe'
 import DrawerNavigationView from './DrawerNavigationView'
 import SignUp from './SignUp/Index'
 import SignIn from './SignIn/Index'
@@ -46,7 +46,7 @@ const Main = () => {
           <View style={styles.content}>
             <Routes>
               <Route path="/" element={<Categories />} exact />
-              <Route path="/add-new" element={<AddNewRecipe />} exact />
+              <Route path="/add-new" element={<AddEditRecipe />} exact />
               <Route path="/shoppingbag" element={<Shoppingbag />} exact />
               <Route path="/categories" element={<Categories />} exact />
               <Route path="/categories/:title" element={<RecipeList />} exact />

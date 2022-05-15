@@ -5,12 +5,12 @@ import theme from '../../theme'
 import FormikTextInput from '../FormikTextInput'
 import Button from '../Button'
 import StarRatingInput from '../StarRatingInput'
-import AddImage from './AddImage'
-import AddCategory from './AddCategory'
-import AddServings from './AddServings'
-import AddCookingTime from './AddCookingTime'
-import AddIngredients from './AddIngredients'
-import AddDirections from './AddDirections'
+import AddEditImage from './AddEditImage'
+import AddEditCategory from './AddEditCategory'
+import AddEditServings from './AddEditServings'
+import AddEditCookingTime from './AddEditCookingTime'
+import AddEditIngredients from './AddEditIngredients'
+import AddEditDirections from './AddEditDirections'
 
 const styles = StyleSheet.create({
   component: {
@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
 const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeToEdit, onSubmitEdit }) => (
   <View style={styles.component}>
     <View style={styles.item}>
-      <AddImage values={values} />
+      <AddEditImage values={values} />
     </View>
     <FormikTextInput name='title' placeholder='Title' />
     <View style={styles.item}>
-      <AddCategory
+      <AddEditCategory
         values={values}
         handleChange={handleChange}
         handleBlur={handleBlur}
@@ -49,11 +49,11 @@ const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeTo
       <Field name='rating' as={StarRatingInput} imageSize={36} />
     </View>
     <View style={{ flexDirection: 'row', }}>
-      <AddServings values={values} />
-      <AddCookingTime values={values} />
+      <AddEditServings values={values} />
+      <AddEditCookingTime values={values} />
     </View>
-    <AddIngredients values={values} />
-    <AddDirections values={values} />
+    <AddEditIngredients values={values} />
+    <AddEditDirections values={values} />
     {recipeToEdit
       ? <Button onPress={onSubmitEdit} style={{ marginTop: 45 }}>Save recipe</Button>
       : <Button onPress={onSubmit} style={{ marginTop: 45 }}>Add recipe</Button>

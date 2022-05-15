@@ -13,7 +13,7 @@ const SingleRecipe = () => {
 
   return (
     <ScrollView style={{ paddingHorizontal: 4 }}>
-      <SingleRecipeHeader navigate={navigate} rating={clickedRecipe?.rating} />
+      <SingleRecipeHeader navigate={navigate} rating={clickedRecipe?.rating} category={clickedRecipe?.category} />
       <SingleRecipeItem recipe={clickedRecipe} />
     </ScrollView>
   )

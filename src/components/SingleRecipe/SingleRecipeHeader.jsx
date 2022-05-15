@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
 })
-
-const SingleRecipeHeader = ({ navigate, rating }) => (
+//onPress={() => navigate(-1)}
+const SingleRecipeHeader = ({ navigate, category, rating }) => (
   <View style={styles.header}>
-    <TouchableOpacity onPress={() => navigate(-1)}>
+    <TouchableOpacity onPress={() => navigate(`/categories/${category}`)}>
       <Icon name='arrowleft' style={styles.goBackIcon} />
     </TouchableOpacity>
     <StarRating startingValue={rating} imageSize={22} tintColor={'#F9F8FB'} />

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-native'
 import * as yup from 'yup'
 import { Formik } from 'formik'
 import { ADD_RECIPE, EDIT_RECIPE } from '../../graphql/mutations'
-import AddNewRecipeForm from './AddNewRecipeForm'
+import AddEditRecipeForm from './AddEditRecipeForm'
 import { ScrollView } from 'react-native'
 
 const validationSchema = yup.object().shape({
@@ -39,7 +39,8 @@ const AddNewRecipe = () => {
   }
 
   const initialEditValues = {
-    image: null,
+    editRecipeId: recipeToEdit?.id,
+    image: recipeToEdit?.image,
     title: recipeToEdit?.title,
     category: recipeToEdit?.category,
     rating: recipeToEdit?.rating,
@@ -50,22 +51,24 @@ const AddNewRecipe = () => {
   }
 
   const onSubmitEdit = async (values) => {
-    const { image, title, category, rating, servings, cookingTime, } = values
-    console.log('values', values)
+    const { editRecipeId, image, title, category, rating, servings, cookingTime, ingredients, instructions } = values
+    console.log(ingredients, instructions)
 
-    console.log('edit')
     try {
       const { data } = await editRecipe({
         variables: {
+          editRecipeId,
           title,
           category,
           servings,
           cookingTime,
           rating,
-          image
+          image,
+          ingredients,
+          instructions
         }
       })
-      console.log('edit', data)
+      console.log(data)
     } catch (e) {
       console.log(e)
     }
@@ -74,7 +77,6 @@ const AddNewRecipe = () => {
 
   const onSubmit = async (values) => {
     const { image, title, category, rating, servings, cookingTime, ingredients, instructions  } = values
-    console.log('values', values)
 
     try {
       const { data } = await addRecipe({
@@ -89,7 +91,7 @@ const AddNewRecipe = () => {
           instructions
         }
       })
-      console.log('data', data)
+      console.log(data)
       navigate(`/categories/${category}/${data.addRecipe.id}`)
     } catch (e) {
       console.log(e)
@@ -105,7 +107,7 @@ const AddNewRecipe = () => {
           validationSchema={validationSchema}
         >
           {({ handleSubmit, values, handleChange, handleBlur, }) =>
-            <AddNewRecipeForm
+            <AddEditRecipeForm
               onSubmitEdit={handleSubmit}
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -126,7 +128,7 @@ const AddNewRecipe = () => {
         validationSchema={validationSchema}
       >
         {({ handleSubmit, values, handleChange, handleBlur, }) =>
-          <AddNewRecipeForm
+          <AddEditRecipeForm
             onSubmit={handleSubmit}
             handleChange={handleChange}
             handleBlur={handleBlur}
