@@ -11,8 +11,6 @@ import AddServings from './AddServings'
 import AddCookingTime from './AddCookingTime'
 import AddIngredients from './AddIngredients'
 import AddDirections from './AddDirections'
-import Text from '../Text'
-
 
 const styles = StyleSheet.create({
   component: {
@@ -34,33 +32,32 @@ const styles = StyleSheet.create({
   },
 })
 
-const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeToEdit }) => (
+const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeToEdit, onSubmitEdit }) => (
   <View style={styles.component}>
     <View style={styles.item}>
       <AddImage values={values} />
     </View>
-    {recipeToEdit
-      ?  <FormikTextInput name='title' value={recipeToEdit?.title} placeholder='Title' />
-      :  <FormikTextInput name='title' placeholder='Title' />
-    }
+    <FormikTextInput name='title' placeholder='Title' />
     <View style={styles.item}>
       <AddCategory
         values={values}
         handleChange={handleChange}
         handleBlur={handleBlur}
-        categoryToEdit={recipeToEdit?.category}
       />
     </View>
     <View style={styles.item}>
       <Field name='rating' as={StarRatingInput} imageSize={36} />
     </View>
     <View style={{ flexDirection: 'row', }}>
-      <AddServings servingsToEdit={recipeToEdit?.servings} />
-      <AddCookingTime />
+      <AddServings values={values} />
+      <AddCookingTime values={values} />
     </View>
     <AddIngredients values={values} />
     <AddDirections values={values} />
-    <Button onPress={onSubmit} style={{ marginTop: 45 }}>Save recipe</Button>
+    {recipeToEdit
+      ? <Button onPress={onSubmitEdit} style={{ marginTop: 45 }}>Save recipe</Button>
+      : <Button onPress={onSubmit} style={{ marginTop: 45 }}>Add recipe</Button>
+    }
   </View>
 )
 

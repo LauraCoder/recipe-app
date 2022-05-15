@@ -23,7 +23,7 @@ const StarRatingInput  = ({ warning, style, name, ...props }) => {
       ratingColor={theme.colors.tertiary}
       ratingBackgroundColor={theme.colors.secondary}
       tintColor={theme.colors.white}
-      startingValue={0}
+      startingValue={field.value}
       style={ratingStyle}
       onFinishRating={value => helpers.setValue(value)}
       {...props}

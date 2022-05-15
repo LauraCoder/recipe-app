@@ -41,8 +41,8 @@ const AddIngredients = ({ values, }) => (
     <FieldArray name='ingredients'>
       {({ remove, push }) => (
         <>
-          {values.ingredients.length > 0 &&
-            values.ingredients.map((ingredient, index) => (
+          {values.ingredients?.length > 0 &&
+            values.ingredients?.map((ingredient, index) => (
               <View style={styles.arrayInput} key={index}>
                 <FormikTextArrayInput
                   name={`ingredients.${index}`}

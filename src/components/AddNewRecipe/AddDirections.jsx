@@ -42,8 +42,8 @@ const AddDirections = ({ values, }) => (
     <FieldArray name='instructions'>
       {({ remove, push }) => (
         <>
-          {values.instructions.length > 0 &&
-            values.instructions.map((step, index) => (
+          {values.instructions?.length > 0 &&
+            values.instructions?.map((step, index) => (
               <View style={styles.arrayInput} key={index}>
                 <Text
                   color='primary'

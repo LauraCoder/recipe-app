@@ -33,12 +33,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const AddServings = ({ servingsToEdit }) => (
+const AddServings = () => (
   <View style={styles.arrayInput} marginRight={10}>
-    {servingsToEdit
-      ? <FormikNumberInput name='servings' placeholder={servingsToEdit.toString()} style={{ flex: 0.95 }} />
-      : <FormikNumberInput name='servings' placeholder='Servings' style={{ flex: 0.95 }} />
-    }
+    <FormikNumberInput name='servings' placeholder='Servings' style={{ flex: 0.95 }} />
     <FontIcon name='user' style={styles.detailIcon} />
   </View>
 )
