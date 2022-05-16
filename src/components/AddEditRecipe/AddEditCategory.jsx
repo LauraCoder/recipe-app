@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const AddCategory = ({ values, handleChange, handleBlur }) => {
+const AddCategory = ({ values, handleChange, handleBlur, }) => {
   const { categories } = useCategories()
   return (
     <>

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const SignUpForm = ({ onSubmit, values, handleChange, handleBlur, }) => (
+const SignUpForm = ({ onSubmit, }) => (
   <View style={styles.component}>
     <FormikTextInput name='username' placeholder='Username' />
     <Button onPress={onSubmit} style={{ marginTop: 45 }}>Sign Up</Button>

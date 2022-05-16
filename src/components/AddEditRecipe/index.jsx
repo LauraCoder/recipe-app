@@ -11,14 +11,13 @@ const validationSchema = yup.object().shape({
     .string()
     .min(2, 'Title must be longer')
     .required('Title is required'),
-  /*servings: yup
-    .number()
-    .min(1, 'Number of servings must be greater or equal to 1')
-    .required('Number of servings is required'),
+  servings: yup
+    .number('Please write a number')
+    .min(1, 'Number of servings must be greater or equal to 1'),
   cookingTime: yup
     .number()
     .min(1, 'Cooking time must be greater or equal to 1')
-    .required('Cooking time is required'),*/
+    .positive('The rating value must be at least 0'),
 })
 
 const AddNewRecipe = () => {

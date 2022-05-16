@@ -1,22 +1,24 @@
-//import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { useField } from 'formik'
 
 import TextInput from './TextInput'
-//import Text from './Text'
-//import theme from '../theme'
+import Text from './Text'
+import theme from '../theme'
 
-/*const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   errorText: {
     marginTop: 5,
     color: theme.colors.warning,
+    position: 'absolute',
+    top: 45,
+    right: 0,
+    width: '100%'
   },
-})*/
+})
 
 const FormikNumberInput = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name)
   const showError = meta.touched && meta.error
-
-  //{showError && <Text style={styles.errorText}>{meta.error}</Text>}
 
   return (
     <>
@@ -27,6 +29,7 @@ const FormikNumberInput = ({ name, ...props }) => {
         error={showError}
         {...props}
       />
+      {showError && <Text style={styles.errorText}>{meta.error}</Text>}
     </>
   )
 }

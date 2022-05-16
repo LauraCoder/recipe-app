@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeToEdit, onSubmitEdit }) => (
+const AddNewRecipeForm = ({ onSubmit, values, handleChange, handleBlur, recipeToEdit, onSubmitEdit, }) => (
   <View style={styles.component}>
     <View style={styles.item}>
       <AddEditImage values={values} />

@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
 const validationSchema = yup.object().shape({
   username: yup
     .string()
-    .min(2, 'Title must be longer')
-    .required('Title is required'),
+    .min(2, 'Username must be longer')
+    .required('Username is required'),
 })
 
 const initialValues = {

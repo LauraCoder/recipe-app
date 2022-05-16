@@ -9,7 +9,7 @@ const SingleRecipe = () => {
   let navigate = useNavigate()
   const { id } = useParams()
   const { recipes } = useRecipes()
-  const clickedRecipe = recipes.find(item => item.id === id)
+  const clickedRecipe = recipes?.find(item => item.id === id)
 
   return (
     <ScrollView style={{ paddingHorizontal: 4 }}>

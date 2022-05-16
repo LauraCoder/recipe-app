@@ -1,15 +1,15 @@
-import { useMutation } from '@apollo/client'
-import { useEffect } from 'react'
+//import { useMutation } from '@apollo/client'
+//import { useEffect } from 'react'
 import { StyleSheet, ImageBackground, View, } from 'react-native'
 import { Formik } from 'formik'
 
-import { LOGIN } from '../../graphql/mutations'
+//import { LOGIN } from '../../graphql/mutations'
 import theme from '../../theme'
 import images from '../../../assets/images'
 import FormikTextInput from '../FormikTextInput'
 import Text from '../Text'
 import Button from '../Button'
-import useLogin from '../../hooks/useLogin'
+//import useLogin from '../../hooks/useLogin'
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 })
 
 const SignIn = () => {
-  const [signIn] = useLogin()
+  //const [signIn] = useLogin()
 
   const onSubmit = async (values) => {
     console.log('login', values)
