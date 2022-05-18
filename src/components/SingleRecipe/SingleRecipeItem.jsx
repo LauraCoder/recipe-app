@@ -106,16 +106,16 @@ const SingleRecipeItem = ({ recipe }) => {
     if (!clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)) {
       try {
         setClickedIngredient(clickedIngredient.concat(ingredient))
+        // eslint-disable-next-line no-unused-vars
         const { data } = await addIngredient({
           variables: {
             ingredient
           }
         })
-        console.log(data)
       } catch (e) {
         console.log(e)
       }
-    } else if (clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)) {
+    } else if (clickedIngredient.includes(ingredient) || shoppingbagList.includes(ingredient)) {
       try {
         const findIngredientIndex = shoppingbagList.indexOf(ingredient)
         const findIngredientID = shoppingbagListID[findIngredientIndex].id

@@ -9,13 +9,30 @@ const httpLink = createHttpLink({
 
 const cache = new InMemoryCache({
   typePolicies: {
-    Query: {
+    Recipe: {
       fields: {
         recipes: relayStylePagination(),
+      },
+      merge: true,
+    },
+    Shoppingbag: {
+      merge: true,
+      fields: {
+        ingredient: {
+          merge(existing, incoming, { mergeObjects }) {
+            return mergeObjects(existing, incoming)
+          },
+        },
       },
     },
   },
 })
+/*
+Author: {
+
+  merge: true,
+
+},*/
 
 const createApolloClient = (authStorage) => {
   const authLink = setContext(async (_, { headers }) => {

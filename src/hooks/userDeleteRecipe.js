@@ -8,24 +8,25 @@ const useDeleteRecipe = () => {
   })
 
   const deleteRecipe = async (id) => {
-    console.log('id', id)
     const recipesAfter = await mutate({ variables: { deleteRecipeId: id } })
     return recipesAfter
   }
-
+/*
   const cache = new InMemoryCache({
     typePolicies: {
       AllRecipes: {
         fields: {
           recipe: {
-            merge: true,
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
           },
         },
       },
     },
-  })
+  })*/
 
-  return [deleteRecipe, result, cache ]
+  return [deleteRecipe, result, ]
 }
 
 export default useDeleteRecipe

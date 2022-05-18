@@ -11,20 +11,22 @@ const useDeleteIngredient = () => {
     const ingredientsAfter = await mutate({ variables: { deleteIngredientId: id } })
     return ingredientsAfter
   }
-
+/*
   const cache = new InMemoryCache({
     typePolicies: {
-      AllIngredients: {
+      Shoppingbag: {
         fields: {
           ingredient: {
-            merge: true,
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
           },
         },
       },
     },
-  })
+  })*/
 
-  return [deleteIngredient, result, cache ]
+  return [deleteIngredient, result, ]
 }
 
 export default useDeleteIngredient
