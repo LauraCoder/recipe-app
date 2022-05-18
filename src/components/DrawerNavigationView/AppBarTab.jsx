@@ -8,13 +8,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#eee',
     marginHorizontal: 10,
-    marginTop: 20,
+    paddingTop: 20,
     paddingBottom: 20,
     paddingHorizontal: 16
   },
   subtab: {
     marginHorizontal: 10,
-    marginTop: 20,
+    paddingTop: 20,
     paddingBottom: 20,
     paddingRight: 16,
     paddingLeft: 35

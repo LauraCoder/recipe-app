@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import AntIcon from 'react-native-vector-icons/AntDesign'
-import { DELETE_RECIPE } from '../../graphql/mutations'
+import useDeleteRecipe from '../../hooks/userDeleteRecipe'
 import { ADD_INGREDIENT } from '../../graphql/mutations'
 import { GET_INCREDIENTS } from '../../graphql/queries'
 import useIngredients from '../../hooks/useIngredients'
@@ -66,15 +66,14 @@ const styles = StyleSheet.create({
 })
 
 const SingleRecipeItem = ({ recipe }) => {
-  const [deleteRecipe] = useMutation(DELETE_RECIPE)
+  const [deleteRecipe] = useDeleteRecipe()
   const [addIngredient] = useMutation(ADD_INGREDIENT, {
     refetchQueries: [ { query: GET_INCREDIENTS } ]
   })
   const { ingredients } = useIngredients()
-  const [deleteIngredient, result] = useDeleteIngredient()
+  const [deleteIngredient] = useDeleteIngredient()
   const [clickedIngredient, setClickedIngredient] = useState([])
   let navigate = useNavigate()
-  const [error, setError] = useState('')
 
   let shoppingbagList = ingredients
     ? ingredients.map(edge => edge.ingredient)
@@ -98,22 +97,10 @@ const SingleRecipeItem = ({ recipe }) => {
     )
   }
 
-  const deleteSingleRecipe = async () => {
-    try {
-      await deleteRecipe({
-        variables: { deleteRecipeId: recipe.id },
-      })
-      navigate(`/categories/${recipe.category}`)
-    } catch (e) {
-      console.log(e)
-    }
+  const deleteSingleRecipe = () => {
+    deleteRecipe(recipe.id)
+    navigate(`/categories/${recipe.category}`)
   }
-/*
-  useEffect(() => {
-    if (result.data && !result.data.deleteIngredient ) {
-      setError('Ingredient not found')
-    }
-  }, [result.data, setError])*/
 
   const addToShoppingbag = async (ingredient) => {
     if (!clickedIngredient.includes(ingredient) && !shoppingbagList.includes(ingredient)) {

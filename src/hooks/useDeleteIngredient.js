@@ -12,21 +12,19 @@ const useDeleteIngredient = () => {
     return ingredientsAfter
   }
 
-  /*const cache = new InMemoryCache({
+  const cache = new InMemoryCache({
     typePolicies: {
-      Shoppingbag: {
+      AllIngredients: {
         fields: {
           ingredient: {
-            merge(existing, incoming, { mergeObjects }) {
-              return mergeObjects(existing, incoming)
-            },
+            merge: true,
           },
         },
       },
     },
-  })*/
+  })
 
-  return [deleteIngredient, result]
+  return [deleteIngredient, result, cache ]
 }
 
 export default useDeleteIngredient
