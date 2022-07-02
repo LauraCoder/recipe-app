@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { useNavigate } from 'react-router-native'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Constants from 'expo-constants'
 import Icon from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+import { FIND_RECIPE } from '../../graphql/queries'
 import theme from '../../theme'
 import AppBarTab from './AppBarTab'
 import SearchOverlay from './SearchOverlay'
@@ -32,11 +35,22 @@ const styles = StyleSheet.create({
 
 const AppBarTop = ({ drawer }) => {
   const [visible, setVisible] = useState(false)
-  const [search, setSearch] = useState('')
+  const [title, setTitle] = useState(null)
+  const result = useQuery(FIND_RECIPE, {
+    variables: { title },
+    skip: !title,
+  })
+  let navigate = useNavigate()
 
   const toggleOverlay = () => setVisible(!visible)
-  const updateSearch = (search) => {
-    setSearch(search)
+  const updateSearch = (title) => {
+    setTitle(title)
+  }
+  const onSubmitSearch = () => {
+    const foundRecipe = result?.data?.findRecipe
+    setTitle(null)
+    toggleOverlay()
+    navigate(`/categories/${foundRecipe.category}/${foundRecipe.id}`)
   }
 
   return (
@@ -59,8 +73,9 @@ const AppBarTop = ({ drawer }) => {
         toggleOverlay={toggleOverlay}
         visible={visible}
         setVisible={setVisible}
-        search={search}
+        title={title}
         updateSearch={updateSearch}
+        onSubmitSearch={onSubmitSearch}
       />
     </View>
   )

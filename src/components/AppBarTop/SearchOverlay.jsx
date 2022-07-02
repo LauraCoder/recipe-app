@@ -1,6 +1,8 @@
 import { SearchBar, Overlay } from 'react-native-elements'
+import { TouchableOpacity } from 'react-native'
+import Text from '../Text'
 
-const SearchOverlay = ({ toggleOverlay, visible, search, updateSearch }) => (
+const SearchOverlay = ({ toggleOverlay, visible, title, updateSearch, onSubmitSearch }) => (
   <Overlay
     isVisible={visible}
     onBackdropPress={toggleOverlay}
@@ -9,7 +11,7 @@ const SearchOverlay = ({ toggleOverlay, visible, search, updateSearch }) => (
     <SearchBar
       placeholder='Type here...'
       onChangeText={updateSearch}
-      value={search}
+      value={title}
       containerStyle={{
         backgroundColor: '#fff',
         borderBottomColor: 'transparent',
@@ -20,7 +22,11 @@ const SearchOverlay = ({ toggleOverlay, visible, search, updateSearch }) => (
       showLoading
       showCancel
       lightTheme
+      on
     />
+    <TouchableOpacity onPress={() => onSubmitSearch()}>
+      <Text>Etsi</Text>
+    </TouchableOpacity>
   </Overlay>
 )
 

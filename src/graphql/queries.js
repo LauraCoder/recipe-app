@@ -28,3 +28,12 @@ export const GET_INCREDIENTS = gql`
   }
   ${INGREDIENT_DETAILS}
 `
+
+export const FIND_RECIPE = gql`
+  query FindRecipe($title: String!) {
+    findRecipe(title: $title) {
+      ...RecipeDetails
+    }
+  }
+  ${RECIPE_DETAILS}
+`
