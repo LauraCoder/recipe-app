@@ -37,3 +37,12 @@ export const FIND_RECIPE = gql`
   }
   ${RECIPE_DETAILS}
 `
+
+export const FILTER_RECIPES = gql`
+  query FilterRecipes($servings: Int, $cookingTime: Int, $rating: Float) {
+    filterRecipes(servings: $servings, cookingTime: $cookingTime, rating: $rating) {
+      ...RecipeDetails
+    }
+  }
+  ${RECIPE_DETAILS}
+`

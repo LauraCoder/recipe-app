@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, addFilters }) => (
+const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, addFilters, updateCookingTimeFilter, cookingTime, }) => (
   <Overlay
     isVisible={visible}
     onBackdropPress={toggleOverlay}
@@ -55,6 +55,8 @@ const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, ad
       <Text subHeading style={{ paddingBottom: 7 }}>Max. cooking time</Text>
       <Input
         placeholder='min'
+        value={cookingTime}
+        onChangeText={updateCookingTimeFilter}
         inputStyle={{ fontSize: theme.fontSizes.subheading, }}
         rightIcon={
           <Icon
@@ -79,7 +81,17 @@ const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, ad
         }
       />
     </View>
-    <View style={styles.singleFilter}>
+    <View style={{ flexDirection: 'row', }}>
+      <Button onPress={() => addFilters()}>Add filters</Button>
+      <Button secondary onPress={toggleOverlay} style={{ width: '50%' }}>Cancel</Button>
+    </View>
+  </Overlay>
+)
+
+export default FilterOverlay
+
+/*Filter UI for filtering ingredients
+<View style={styles.singleFilter}>
       <Text subHeading style={{ paddingBottom: 7 }}>Ingredients</Text>
       <Input
         placeholder='ingredient'
@@ -93,11 +105,4 @@ const FilterOverlay = ({ visible, toggleOverlay, ratingValue, setRatingValue, ad
         }
       />
     </View>
-    <View style={{ flexDirection: 'row', }}>
-      <Button onPress={addFilters}>Add filters</Button>
-      <Button secondary onPress={toggleOverlay} style={{ width: '50%' }}>Cancel</Button>
-    </View>
-  </Overlay>
-)
-
-export default FilterOverlay
+*/

@@ -1,9 +1,11 @@
+//import { useQuery } from '@apollo/client'
 import { useCallback, useState } from 'react'
 import { FlatList, Pressable, } from 'react-native'
 import { useParams } from 'react-router-native'
 import { useNavigate } from 'react-router-native'
 
 import useRecipes from '../../hooks/useRecipes'
+//import { FILTER_RECIPES } from '../../graphql/queries'
 import RecipeCard from './RecipeCard'
 import HeaderComponent from './HeaderComponent'
 
@@ -17,6 +19,10 @@ const RecipeList = () => {
   const { recipes, fetchMore } = useRecipes({
     first: 8,
   })
+  /*const filterResult = useQuery(FILTER_RECIPES, {
+    variables: { rating, cookingTimeFilter, servings },
+    skip: !rating || !cookingTimeFilter || !servings,
+  })*/
   const [refreshing, setRefreshing] = useState(false)
 
   const filteredRecipeList = recipes
@@ -59,7 +65,11 @@ const RecipeList = () => {
       }
       keyExtractor={item => item.id}
       numColumns={2}
-      ListHeaderComponent={() => <HeaderComponent title={title} navigate={navigate} />}
+      ListHeaderComponent={() =>
+        <HeaderComponent
+          title={title}
+          navigate={navigate}
+        />}
       contentContainerStyle={{ paddingBottom: 15, paddingHorizontal: 5, }}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
