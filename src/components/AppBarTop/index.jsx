@@ -43,7 +43,7 @@ const AppBarTop = ({ drawer }) => {
   let navigate = useNavigate()
 
   const toggleOverlay = () => setVisible(!visible)
-  const updateSearch = (title) => setTitle(title)
+  const updateSearch = (title) => setTitle(title.toLowerCase())
 
   const onSubmitSearch = () => {
     const foundRecipe = result?.data?.findRecipe
