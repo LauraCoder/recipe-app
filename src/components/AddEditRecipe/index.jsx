@@ -51,8 +51,6 @@ const AddNewRecipe = () => {
 
   const onSubmitEdit = async (values) => {
     const { editRecipeId, image, title, category, rating, servings, cookingTime, ingredients, instructions } = values
-    console.log(ingredients, instructions)
-
     try {
       const { data } = await editRecipe({
         variables: {

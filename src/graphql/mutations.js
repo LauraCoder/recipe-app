@@ -50,18 +50,10 @@ export const EDIT_RECIPE = gql`
       ingredients: $ingredients,
       instructions: $instructions
     ) {
-      id
-      title
-      category
-      servings
-      cookingTime
-      rating
-      ingredients
-      instructions
-      dateAdded
-      image
+      ...RecipeDetails
   }
 }
+${RECIPE_DETAILS}
 `
 
 export const DELETE_RECIPE = gql`

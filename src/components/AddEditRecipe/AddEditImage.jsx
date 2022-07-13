@@ -26,18 +26,20 @@ const styles = StyleSheet.create({
   },
 })
 
-const AddImageOverlay = ({ toggleOverlay, visible, pickImage, takePicture, deleteImage }) => (
+const AddImageOverlay = ({ toggleOverlay, visible, pickImage, takePicture, deleteImage, image }) => (
   <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{ width: '90%', paddingHorizontal: 5, paddingBottom: 20, display: 'flex', flexDirection: 'column' }}>
     <View style={{ isplay: 'flex', flexDirection: 'row' }}>
       <Button onPress={pickImage} style={{ flex: 0.5 }}>From gallery</Button>
       <Button onPress={takePicture} style={{ flex: 0.5 }}>Take a photo</Button>
     </View>
+    {image &&
     <View style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center' }}>
       <Button secondary onPress={deleteImage} style={{ flex: 0.5 }}>
         <FontIcon name='trash' color={theme.colors.primary} size={15} />
         Delete image
       </Button>
     </View>
+    }
   </Overlay>
 )
 
@@ -67,6 +69,7 @@ const AddImage = ({ values }) => {
         { text: 'Delete', onPress: () => deleteImage() }
       ]
     )
+    setVisible(false)
   }
 
   const pickImage = async () => {
@@ -87,6 +90,7 @@ const AddImage = ({ values }) => {
       setImage(result.uri)
       values.image = result.uri
     }
+    setVisible(false)
   }
 
   const takePicture = async () => {
@@ -102,26 +106,9 @@ const AddImage = ({ values }) => {
       setImage(result.uri)
       values.image = result.uri
     }
+    setVisible(false)
   }
 
-  /*
-  {imageExist
-        ? (
-          <View style={styles.imageInput2}>
-            <Image source={values.image ? { uri: values.image } : { uri: image }} style={{ height: 200 }} name='image' />
-            <MaterialIcon name='camera-plus' color='#fff' size={35} style={styles.cameraIcon} />
-          </View>
-        )
-        : (
-          <View style={styles.imageInput}>
-            <MaterialIcon name='camera-plus' color='#fff' size={35} />
-          </View>
-        )
-      }
-        <TouchableOpacity onPress={() => deleteImage()}>
-          <FontIcon name='trash' size={25} style={styles.deleteIcon} />
-        </TouchableOpacity>
-      */
   return (
     <TouchableOpacity onPress={toggleOverlay} activeOpacity={.8}>
       <View style={imageExist ? styles.imageInput2 : styles.imageInput}>
@@ -137,6 +124,7 @@ const AddImage = ({ values }) => {
         pickImage={pickImage}
         takePicture={takePicture}
         deleteImage={deleteAlert}
+        image={image}
       />
     </TouchableOpacity>
   )
