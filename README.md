@@ -1,6 +1,6 @@
 <h1>Recipe Book</h1>
 
-<p>Recipe Book is a React Native mobile app for saving recipes. The project has been done as part of the <a href="https://fullstackopen.com/en" target="_blank">Full Stack Open course by Helsinki University.</a></p>
+<p>Recipe Book is a React Native mobile app for saving recipes. The project has been done as part of the <a href="https://fullstackopen.com/en" target="_blank">Full Stack Open course by Helsinki University.</a> Both, frontend (React Native) and <a href="https://github.com/LauraCoder/recipe-app-backend" target="_blank">backend (GraphQL)</a> were created for this project. </p>
 <p>The current features are:</p>
 <ul>
 <li>
@@ -26,15 +26,18 @@ Super simple sign up
 </li>
 </ul>
 
+<h2>Backend</h2>
+<p><a href="https://github.com/LauraCoder/recipe-app-backend" target="_blank">Repository of the backend API for the app can be found here.</a></p>
+
+<h2>Working hours report</h2>
+<p><a href="https://1drv.ms/b/s!AvdNVU4hYkdygQjU62NFVw6SO4Ie" target="_blank">Working hours repost can be found here.</a></p>
+
 <h2>How to use it</h2>
 <ul>
 <li>
 <a href="https://expo.dev/@crentinyy/recipe-app" target="_blank">Scan Expo Go QR code from here</a> and test the app on your Expo Go mobile app.
 </li>
 </ul>
-
-<h2>Working hours report</h2>
-<p><a href="https://1drv.ms/b/s!AvdNVU4hYkdygQjU62NFVw6SO4Ie" target="_blank">Working hours repost can be found here.</a>
 
 <h2>Technologies used</h2>
 <ul>
@@ -63,6 +66,9 @@ Editing recipes works in backend but not yet in frontend.
 Filtering recipes works in backend but not yet in frontend.
 </li>
 <li>
-Sign in both in backend and frontend
+Sign in both in backend and frontend.
+</li>
+<li>
+Form validations.
 </li>
 </ul>
