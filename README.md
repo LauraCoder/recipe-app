@@ -27,10 +27,10 @@ Super simple sign up
 </ul>
 
 <h2>Backend</h2>
-<p><a href="https://github.com/LauraCoder/recipe-app-backend" target="_blank">Repository of the backend API for the app can be found here.</a></p>
+<p><a href="https://github.com/LauraCoder/recipe-app-backend" target="_blank">Repository of the backend API can be found here.</a></p>
 
 <h2>Working hours report</h2>
-<p><a href="https://1drv.ms/b/s!AvdNVU4hYkdygQjU62NFVw6SO4Ie" target="_blank">Working hours repost can be found here.</a></p>
+<p><a href="https://1drv.ms/b/s!AvdNVU4hYkdygQjU62NFVw6SO4Ie" target="_blank">Working hours report can be found here.</a></p>
 
 <h2>How to use it</h2>
 <ul>
