@@ -39,6 +39,8 @@ Super simple sign up
 </li>
 </ul>
 
+<p><a href="https://recipebook-backend22.herokuapp.com/">The backend API is hosted on Heroku.</a></p>
+
 <h2>Technologies used</h2>
 <ul>
 <li>
