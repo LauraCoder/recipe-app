@@ -29,9 +29,12 @@ Super simple sign up
 <h2>How to use it</h2>
 <ul>
 <li>
-Scan Expo Go QR code from <a href="https://expo.dev/@crentinyy/recipe-app" target="_blank">here</a> and test the app on your Expo Go mobile app.
+<a href="https://expo.dev/@crentinyy/recipe-app" target="_blank">Scan Expo Go QR code from here</a> and test the app on your Expo Go mobile app.
 </li>
 </ul>
+
+<h2>Working hours report</h2>
+<p><a href="https://1drv.ms/b/s!AvdNVU4hYkdygQjU62NFVw6SO4Ie" target="_blank">Working hours repost can be found here.</a>
 
 <h2>Technologies used</h2>
 <ul>
