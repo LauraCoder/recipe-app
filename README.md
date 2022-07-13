@@ -1,6 +1,6 @@
 <h1>Recipe Book</h1>
 
-<p>Recipe Book is a React Native mobile app for saving recipes. The project has been done as part of the <a href="https://fullstackopen.com/en" target="_blank">Full Stack Open course by Helsinki University.</p>
+<p>Recipe Book is a React Native mobile app for saving recipes. The project has been done as part of the <a href="https://fullstackopen.com/en" target="_blank">Full Stack Open course by Helsinki University.</a></p>
 <p>The current features are:</p>
 <ul>
 <li>
@@ -29,7 +29,7 @@ Super simple sign up
 <h2>How to use it</h2>
 <ul>
 <li>
-Check the <a href="" target="_blank">live demo</a>
+Scan Expo Go QR code from <a href="https://expo.dev/@crentinyy/recipe-app" target="_blank">here</a> and test the app on your Expo Go mobile app.
 </li>
 </ul>
 
