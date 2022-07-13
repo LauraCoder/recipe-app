@@ -53,9 +53,9 @@ Database: Firebase
 </ul>
 
 <h2>Future possibilites & What to improve</h2>
-<p>In this project I wanted to learn by coding myself as much as possible as this is my first React Native & GraphQL app project. Therefore I have tried to limit used libraries and create functionalities and components by myself.</p>
+<p>In this project I wanted to learn as much as possible by coding myself as this is my first React Native & GraphQL app project. Therefore I have tried to limit used libraries and create functionalities and components by myself.</p>
 
-<p>The code is not yet as clean as possible and some of the features are not fully working yet, but those will be improved lateron. :) </p>
+<p>The code is not yet as clean as possible and some of the features are not fully working yet, but those will be improved lateron. :nerd_face: </p>
 
 <p>Features that still need shaping:</p>
 <ul>
