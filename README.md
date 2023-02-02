@@ -33,9 +33,7 @@ Super simple sign up
 <ul>
 <li>
 <a href="https://expo.dev/@crentinyy/recipe-app" target="_blank">Scan Expo Go QR code from here</a> and test the app on your Expo Go mobile app. *
-</li>
-<li>
-At the moment this project uses SDK 44.0.0 so the project might not open on the newest versions of Expo Go.
+<br><sub>*At the moment this project uses SDK 44.0.0 so the project might not open on the newest versions of Expo Go.</sub>
 </li>
 </ul>
 
